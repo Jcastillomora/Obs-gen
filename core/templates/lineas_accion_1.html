@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container-fluid" style="background-color: #dfdfdf;">
+  <div class="container" style="width: 80%; height: 60%; background-color: #ffffff; margin: 0 auto;"> 
+    <div class="container p-5" style="font-family: 'Roboto', sans-serif; color: #4d4d4d; font-weight: 300" >
+      <br>
+      <br>
+      <p style="font-size: 24px; color: #005fab"><strong>Línea de Acción 2</strong></p>
+      <br>
+      <p style="font-size: 24px;"><strong>Liderazgo Femenino</strong><br>
+      Los reportes estadísticos correspondientes a este ítem, guardan relación con el<br> 
+      liderazgo femenino en proyectos de I+D+i+e, puestos de trabajo, número de contratos<br> 
+      de I+D, y el número de artículos de carácter académico en donde las mujeres<br> 
+      aparezcan como autoras principales.<br></p>
+      <br>
+      <hr>
+      <br>
+      <p style="text-align: center; font-size: 21px;">Evolución en el área de investigación de publicaciones 2022-2023</p>
+      {{ chart|safe }}
+      <br>
+      <p style="text-align: center;">Fuente: Elaboración propia, a partir de las bases de Productividad Científica 
+        de la Universidad de La Frontera 2022-2023.</p>
+      <p style="font-size: 21px; text-align: left;" class="m-2">
+        El área de investigación de las publicaciones académicas resulta de las definiciones 
+        de “research areas” de Web of Science (WOS), de acuerdo al área de investigación que 
+        dicta la Organización para la Cooperación y el Desarrollo Económico (OCDE). 
+        En relación al gráfico, se aprecia que quienes lideran en la mayoría de las áreas 
+        de investigación para ambos años son los hombres, exceptuando en Ciencias Sociales, 
+        ya que son las mujeres quienes lideran en esta temática para el año 2022 con una 
+        diferencia de 32 porcentuales, aumentando dicha diferencia a 36 puntos porcentuales 
+        para el año 2023. Por otro lado, es en el área de Humanidades donde las mujeres 
+        mayormente disminuyeron su participación de un año a otro. La diferencia en la brecha 
+        entre ambos sexos para el año 2022 fue de 6 puntos porcentuales, aumentando 
+        exponencialmente para el año 2023 a 50 puntos porcentuales. Finalmente, se debe indicar 
+        que es en Ingeniería y Tecnología donde las mujeres aumentaron mayormente su participación 
+        de un año a otro, ya que la diferencia en la brecha para el año 2022 fue de 70 puntos 
+        porcentuales, disminuyendo considerablemente a 28 puntos porcentuales para el año 2023. 
+      </p>
+      <br>
+      <hr>
+      {{ chart2|safe }}
+      <br>
+      <p style="text-align: center;">Fuente: Elaboración propia, a partir de las bases de Productividad Científica 
+        de la Universidad de La Frontera 2022-2023.</p>
+      <p style="font-size: 21px; text-align: left;" class="m-2">
+          Las publicaciones lideradas en la Universidad de La Frontera para el período 2020-2023, 
+          hacen referencia a las publicaciones de la base de datos de referencias bibliográficas 
+          Web of Science (WOS). A su vez, se consideran líderes de las mismas a quienes cumplan 
+          con la condición de ser autor o autora de correspondencia (corresponding author). 
+          A partir del gráfico, se observa que quienes lideran para todos los años las publicaciones 
+          académicas son los hombres. Es relevante indicar que el porcentaje en el liderazgo para el 
+          año 2020 y 2021 en WOS se mantiene tanto para hombres (70%) como para mujeres (30%). 
+          La brecha entre ambos es de 40 puntos porcentuales para ambos años, lo que refleja 
+          un amplio liderazgo de parte de los hombres en la producción científica de WOS. 
+          Sin embargo, para el año 2022 se produce un alza en las mujeres de 7 puntos porcentuales. 
+          Finalmente, para el año 2023 las mujeres disminuyeron en el liderazgo en tan solo un 
+          punto porcentual en comparación a los hombres. En caso de que las mujeres sigan 
+          la tendencia de los últimos años en cuanto a productividad científica, se podría esperar 
+          para el futuro al menos una estabilidad en el porcentaje de publicaciones lideradas, 
+          mas no una baja relevante de la misma. 
+      </p>
+      <br>
+      <hr>
+      {{ chart3|safe }}
+      <br>
+      <p style="text-align: center;">Fuente: Elaboración propia, a partir de la base de datos Unidad de
+        Transferencia Tecnológica de la Universidad de La Frontera 2020-2023.</p>
+      <p style="font-size: 21px; text-align: left;" class="m-2">
+        Los Proyectos de Innovación y Transferencia Tecnológica refieren a aquellos proyectos adjudicados 
+        desde la Unidad de Transferencia Tecnológica de la Universidad de La Frontera.
+        De acuerdo al gráfico, se observa que han sido los hombres quienes han liderado a través de 
+        los años en los Proyectos de Innovación y Transferencia. Sin embargo, la evolución en el 
+        tiempo refleja una disminución considerable en la brecha entre ambos sexos. 
+        A saber, durante el año 2020 la diferencia entre ambos sexos fue de 14 puntos porcentuales. 
+        Para el año 2021 la brecha aumenta exponencialmente en 66 puntos porcentuales. 
+        No obstante, para el año 2022 la brecha disminuye en 20 puntos porcentuales, 
+        para luego en el año 2023 ser de tan solo dos puntos porcentuales. 
+        Es de esperar, si se mantiene la misma tendencia a través de los años, que las mujeres 
+        se mantengan o inclusive, suban en el porcentaje del liderazgo en Proyectos de Innovación y Transferencia Tecnológica.    
+      </p>
+      <br>
+    </div>
+  </div>
+  </div>
+
+{% endblock content %}

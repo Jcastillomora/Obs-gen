@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container-fluid" style="background-color: #dfdfdf;">
+  <div class="container" style="width: 80%; height: 60%; background-color: #ffffff; margin: 0 auto;"> 
+    <div class="container p-5" style="font-family: 'Roboto', sans-serif; font-size: 24px; color: #4d4d4d; font-weight: 300" >
+      <p>
+        <br>
+        <p style="color: #005fab"><strong>Líneas<br> de Acción</strong></p>
+        <br>
+        El observatorio de Género y Ciencia agrupa el total de los indicadores en Líneas<br>
+        de Acción con el fin de monitorearlos de forma ordenada permitiendo así, una<br>
+        correcta y eficiente sistematización, análisis y reporte de las actividades a<br>
+        a cumplir por las distintas Unidades de la Universidad de La Frontera.<br>
+        <br>
+      </p>
+      <div class="container">
+        <div class="row mb-4"> <!-- Agregando la clase mb-4 para espacio entre filas -->
+          <!-- Primera fila -->
+          <div class="col-md-4">
+            
+            <div class="card rounded-0">
+              <div class="card-body">
+                <br><strong>
+                Acciones Concretas con<br>
+                Perspectiva de Género</strong><br>
+                <br>
+                <a href="#" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card rounded-0">
+              <div class="card-body">
+                <br><strong>
+                Liderazgo<br>
+                Femenino</strong><br>
+                <br>
+                <a href="{% url 'lineas_accion_1' %}" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card rounded-0">
+              <div class="card-body">
+                <br><strong>
+                Emprendimiento</strong><br>
+                <br>
+                <br>
+                <a href="#" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Segunda fila -->
+          <div class="col-md-4">
+            <div class="card rounded-0">
+              <div class="card-body">
+                <br><strong>
+                Innovación</strong><br>
+                <br>
+                <br>  
+                <a href="#" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card rounded-0">
+              <div class="card-body">
+                <br><strong>
+                Financiamiento<br>
+                y Patrocionio</strong><br>
+                <br>
+                <a href="#" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card rounded-0">
+              <div class="card-body">
+                <br><strong>
+                Remuneraciones</strong><br>
+                <br>
+                <br>
+                <a href="#" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+    </div>
+  </div>
+  </div>
+{% endblock content %}
