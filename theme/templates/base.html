@@ -1,4 +1,4 @@
-{% load static %}{% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,19 +12,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit-icons.min.js"></script>
+
     <!-- Plotly CDN JS -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     
-    {% comment %} <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" /> {% endcomment %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
+
     
     <!--Favicon-->
     <link rel="icon" href="{% static 'img/estadisticas.png' %}" type="image/png" sizes="16x16">
 
-    {% comment %} <link rel="stylesheet" href="{% static 'css/style_base.css' %}"> {% endcomment %}
-    {% compress css%}
-    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
-    {% endcompress %}
+    <link rel="stylesheet" href="{% static 'css/style_base.css' %}">
     {% comment %} <style>
       /* Estilo adicional para personalizar */
 

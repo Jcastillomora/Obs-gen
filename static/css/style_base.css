@@ -1,0 +1,104 @@
+.card {
+    margin-bottom: 20px;
+    color: #005fab;
+    background-color: #fff; /* Fondo blanco para la tarjeta */
+    border-color: #005fab !important; /* Borde de la tarjeta */
+}
+
+.card:hover {
+    background-color: #005fab; /* Cambia el color de fondo al azul al pasar el mouse */
+    color: #fff; /* Cambia el color del texto a blanco al pasar el mouse */
+}
+
+.btn {
+    background-color: #fff !important; /* Fondo blanco para el botón */
+    border-color: #005fab !important; /* Borde del botón */
+    color: #005fab !important; /* Color del texto del botón */
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #fff !important; /* Cambia el fondo del botón a azul al pasar el mouse */
+    border-color: #005fab !important; /* Cambia el color del borde a blanco al pasar el mouse */
+    color: #005fab !important; /* Cambia el color del texto a blanco al pasar el mouse */
+    text-decoration: none;
+}
+
+.responsive-text {
+    font-size: 22px;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    width: 70%;
+}
+
+.uk-navbar-container {
+    background-color: #fff!important;
+}
+
+nav li {
+    display: inline-block; /* Muestra los elementos de la lista como bloques en línea */
+    margin: 0 10px; /* Agrega espacio entre elementos de la lista */
+}
+
+nav li a {
+    color: #005fab!important; /* Color de la tipografía */
+    text-decoration: none; /* Elimina el subrayado predeterminado */
+    font-family: 'Roboto', sans-serif; /* Familia de fuentes */
+    font-size: 14px; /* Tamaño de la fuente */
+}
+
+em {
+    color: inherit; /* O cualquier otro color deseado */
+}
+
+@media (max-width: 480px) {  
+    .responsive-text {
+        font-size: 15px;
+        text-align: justify;
+        width: 100%;
+    }
+
+    .uk-icon {
+        font-size: small;
+    }
+
+    .plotly-div {
+        width: 100% !important;
+        height: 100%;
+    }
+}
+
+
+
+.accordion-item .accordion-button:focus {
+    outline: none; /* Elimina el contorno de enfoque */
+    box-shadow: none; /* Elimina la sombra */
+    color: #005fab;
+}
+
+.accordion-item .accordion-button:not(.collapsed) {
+    background-color: transparent; /* Elimina el fondo azul cuando está abierto */
+    /* color: #005fab; Cambia el color del texto cuando está abierto */
+}
+
+.accordion-item .accordion-button.collapsed {
+    color: #005fab; /* Cambia el color del texto cuando esta cerrado */
+}
+
+.accordion-button {
+    font-size: 30px; /* Cambia el tamaño de fuente de los botones del acordeón */
+    color: #005fab; /* Cambia el color del texto de los botones del acordeón */
+}
+
+.accordion-body {
+    font-size: 22px; /* Cambia el tamaño de fuente del contenido del acordeón */
+    color: #005fab;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+}
+
+footer li a {
+    text-decoration: none!important; /* Elimina el subrayado predeterminado */
+}

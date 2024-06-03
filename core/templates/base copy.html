@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit-icons.min.js"></script>
+    <!--Roboto-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Plotly CDN JS -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <style>
+      /* Estilo adicional para personalizar */
+      .card {
+        margin-bottom: 20px;
+        color: #005fab;
+        background-color: #fff; /* Fondo blanco para la tarjeta */
+        border-color: #005fab!important; /* Borde de la tarjeta */
+      }
+    
+      .card:hover {
+        background-color: #005fab; /* Cambia el color de fondo al azul al pasar el mouse */
+        color: #fff; /* Cambia el color del texto a blanco al pasar el mouse */
+      }
+          
+      .btn{
+        background-color: #fff!important; /* Fondo blanco para el botón */
+        border-color: #005fab!important; /* Borde del botón */
+        color: #005fab!important; /* Color del texto del botón */
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background-color: #fff!important; /* Cambia el fondo del botón a azul al pasar el mouse */
+        border-color: #005fab!important; /* Cambia el color del borde a blanco al pasar el mouse */
+        color: #005fab!important; /* Cambia el color del texto a blanco al pasar el mouse */
+        text-decoration: none;
+      }
+
+      .responsive-text {
+        font-size: 24px;
+        font-weight: 300;
+      }
+      
+      @media (max-width: 480px) {
+        .responsive-text {
+          font-size: 14px;
+          text-align: justify;
+        }
+
+
+        .plotly-div {
+          width: 100%!important;
+          height: 100%;}
+      }
+
+    </style>
+
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    {% bootstrap_messages %} {% load static %}
+    <link rel="stylesheet" href="{% static 'staticfiles/style/style_base.css' %}" />
+    <title>Observatorio Género y Ciencia</title>
+  </head>
+  <body>      
+    {% block navbar %}
+      <!-- Alerta -->
+      <div class="container-fluid p-0 m-0 text-center" style="margin: 1; padding: 1; background-color: #a280f6; color: #fff; text-align: center; margin-bottom: 0;">
+        <div style="height: 5px;"></div>Observatorio de género y ciencia UFRO en desarollo<div style="height: 5px;"></div>
+      </div>
+      <div class="container-fluid p-0 m-0">
+        <img src="{% static 'img/banner.png' %}" class="img-fluid" alt="Responsive image" />
+      </div>
+
+      <!-- NavBar Menu -->
+      <nav class="uk-navbar-container" uk-navbar data-uk-sticky style="color: #ffffff">
+        <div class="uk-navbar-center">
+          <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" uk-toggle><span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span></a>
+          <ul class="uk-navbar-nav uk-visible@m">
+            <li>
+              <a href="{% url 'plot' %}" style="text-transform: none">Inicio</a>
+            </li>
+            <li class="uk-navbar-divider" style="border-right: 2px solid #dfdfdf;margin-top: 20px;margin-bottom: 20px;"></li>
+            <li>
+              <a href="{% url 'lineas_accion' %}" style="text-transform: none">Lineas de Acción</a>
+              <div class="uk-navbar-dropdown" style="background-color: #f6f6f6">
+                <ul class="uk-nav uk-navbar-dropdown-nav">
+                  <li>
+                    <a href="#" style="text-transform: none">Acciones con Perspectiva de Género</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'lineas_accion_1' %}">Liderazgo Femenino I+D+i+e</a>
+                  </li>
+                  <li>
+                    <a href="#">Financiamiento y Patrocinio I+D+i+e</a>
+                  </li>
+                  <li>
+                    <a href="#">Capital Humano</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="uk-navbar-divider" style="border-right: 2px solid #dfdfdf;margin-top: 20px;margin-bottom: 20px;"></li>
+             <li>
+              <a href="#" style="text-transform: none">Repositorio</a>
+            </li> 
+            <li class="uk-navbar-divider" style="border-right: 2px solid #dfdfdf;margin-top: 20px;margin-bottom: 20px;"></li>
+            <li>
+              <a href="#" style="text-transform: none">Contacto</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Offcanvas Menu -->
+      <div id="offcanvas" uk-offcanvas>
+        <div class="uk-offcanvas-bar">
+          <ul class="uk-nav uk-nav-default">
+            <li>
+              <a href="{% url 'plot' %}">Inicio</a>
+            </li>
+            <li>
+              <a href="{% url 'lineas_accion' %}">Lineas de Acción</a>
+              <ul class="uk-nav-sub">
+                <li>
+                  <a href="#" target="_blank">Acciones con Perspectiva de Género</a>
+                </li>
+                <li>
+                  <a href="{% url 'lineas_accion_1' %}" target="_blank">Liderazgo Femenino I+D+i+e</a>
+                </li>
+                <li>
+                  <a href="#" target="_blank">Financiamiento y Patrocinio I+D+i+e</a>
+                </li>
+                <li>
+                  <a href="#" target="_blank">Capital Humano</a>
+                </li>
+              </ul> 
+            </li>
+            <li>
+              <a href="#">Repositorio</a>
+            </li>
+            <li>
+              <a href="#">Contacto</a>
+            </li>
+        </div>
+      </div>
+    {% endblock navbar %}
+
+    {% block content %}
+      <div class="container-fluid" style="background-color: #dfdfdf;">
+      <div class="container" style="width: 80%; height: 60%; background-color: #ffffff; margin: 0 auto;"> 
+        <div class="container px-5" style="font-family: 'Roboto', sans-serif; font-size: 20px; color: #4d4d4d; font-weight: 300">
+          <br>
+          <br>
+          <p class="responsive-text">El Observatorio de Género y Ciencia de la Universidad de La Frontera tiene<br> 
+            como objetivo principal aportar al desarrollo de capacidades institucionales<br>
+            a través del monitoreo de las acciones de trasversalización del enfoque de<br>
+            género desde una perspectiva procedimental y normativa en el ámbito de<br>
+            I+D+i+e de base científica tecnológica en la institución.<br>
+            <br>
+            <strong>Misión</strong><br>
+            Recopilar y analizar datos institucionales de I+D+i+e con perspectiva de<br>
+            género y enfoque interseccional dentro de la Universidad de La Frontera,<br>
+            relevando nuevas formas de incorporar la transversalidad de género a nivel<br>
+            institucional<br>
+            <br>
+            <strong>Visión</strong><br>
+            Observatorio de Género y Ciencia reconocido a nivel nacional e internacional<br>
+            como guía y referente acerca de la instauración de la perspectiva de género<br>
+            en el ámbito de I+D+i+e.
+            <br>
+            <br> 
+          </p>   
+        </div>  
+      </div>
+      </div>   
+    {% endblock content %} 
+    {% block footer%}
+    <footer>
+      <div class="container-fluid p-0 m-0" style="background-color: #005fab; color: #fff; text-align: center;">
+        <div style="height: 5px;"></div>Observatorio de género y ciencia UFRO en desarollo<div style="height: 5px;"></div>
+      </div>
+      <div class="container-fluid p-0 m-0" style="background-color: #005fab; color: #fff; text-align: center;">
+        <div style="height: 5px;"></div>Universidad de La Frontera<div style="height: 5px;"></div>
+      </div>
+    </footer>
+    {% endblock footer%}
+  </body>
+</html>

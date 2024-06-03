@@ -4,84 +4,17 @@ import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from django.http import HttpResponse
 
-# Gráfico de propiedad intelectual por año y género del modelo PIDitt(ditt.csv)
-def plot(request):
-
-    # Variables para el gráfico desde el modelo PIDitt
-    pi_ditt = PIDitt.objects.all()
-    años = list(pi_ditt.values_list('año', flat=True))
-    total_mujeres = list(pi_ditt.values_list('total_mujeres', flat=True))
-    total_hombres = list(pi_ditt.values_list('total_hombres', flat=True))
-    total_pi = list(pi_ditt.values_list('total_pi', flat=True))
-
-    # Creación de gráfico "fig", tiene 2 filas en una columna
-    fig = make_subplots(rows=2, cols=1)
-
-    # Gráfico de barras para hombres y mujeres
-    fig.add_trace(go.Bar(x=años, y=total_pi, name='Total PI', marker=dict(color='orange')), row=2, col=1)
-
-    # Se agregan las líneas de tendencia para el gráfico de dispersión
-    fig.add_trace(go.Scatter(x=años, y=total_hombres, mode='lines', name='Hombres', line=dict(color='blue')))
-    fig.add_trace(go.Scatter(x=años, y=total_mujeres, mode='lines', name='Mujeres', line=dict(color='red')))
-    fig.add_trace(go.Scatter(x=años, y=total_pi, mode='lines', name='Total PI', line=dict(color='green')))
-
-    # Cambiar el estilo de la figura "fig""
-    fig.update_layout(
-        template='none',
-        title='Propiedad Intelectual por Año y Género',
-        # xaxis=dict(title='Año'),
-        yaxis=dict(title='Total'),
-        legend=dict(x=1.15, y=1),
-        paper_bgcolor='#4d4d4d',
-        font_family='Roboto',
-        font_size=14,
-        font_color='black',
-        autosize=True,
-    )
-
-    # Configurar el eje x de la figura "fig"  
-    fig.update_xaxes(title_text='Año', row=2, col=1)
-
-    # Creación de gráfico de barras "fig2"
-    fig2 = go.Figure()
-    fig2.add_trace(go.Bar(x=años, y=total_hombres, name='Hombres', marker_color='blue'))
-    fig2.add_trace(go.Bar(x=años, y=total_mujeres, name='Mujeres', marker_color='red'))
-
-    # Configurar la figura 2
-    fig2.update_layout(
-        template='plotly_dark',
-        title='Grafico de Barras Prueba', 
-        yaxis=dict(title='Total PI'),
-        xaxis=dict(title='Año'),
-        barmode='stack',
-        paper_bgcolor='#ffffff',
-        font_family='Roboto',
-        font_size=14, 
-        font_color='black',
-        autosize=True,
-    )
-
-    # Convertir las figuras a HTML
-    html = fig.to_html(full_html=False)
-    html2 = fig2.to_html(full_html=False)
-
-    # Contexto para renderizar las figuras en el template
-    context = {
-        'chart': html,
-        'chart2': html2,
-        'chart_id': 'chart',
-        'chart2_id': 'chart2'
-    }
-
-    return render(request, 'base.html', context)
+def home(request):
+    return render(request, 'home.html')
     
+def repositorio(request):
+    return render(request, 'repositorio.html')
 
 def lineas_accion(request):
     return render(request, 'lineas_accion.html')
 
 def lineas_accion_1(request):
     return render(request, 'lineas_accion_1.html')
-
 
 def plot2(request):
 
@@ -125,97 +58,214 @@ def plot2(request):
     total_itt_mujeres_with_percent = add_percentage_symbol(total_itt_mujeres)
     total_itt_hombres_with_percent = add_percentage_symbol(total_itt_hombres)
 
-    fig = make_subplots(rows=1, cols=2, subplot_titles=('2022', '2023'))
 
+    fig = go.Figure()
     # Crear gráfico de barras para el año 2022
     fig.add_trace(
-        go.Bar(name='Mujeres 2022', marker_color='purple', x=categorias_2022, y=total_mujeres_2022, text=total_mujeres_2022_with_percent, textposition='auto', textangle=0),
-        row=1, col=1
+        go.Bar(name='Mujeres 2022', 
+            #    marker_color='purple',
+               marker = dict(color = 'rgba(255,174,255,0.5)', 
+                              line = dict(color='rgb(0,0,0)',width=1),
+                            ), 
+               x=categorias_2022, 
+               y=total_mujeres_2022, 
+               text=total_mujeres_2022_with_percent,
+               hovertemplate='Mujeres: %{y}%<extra></extra>',
+               textposition='auto', 
+               textangle=0),
     )
 
     fig.add_trace(
-        go.Bar(name='Hombres 2022', marker_color='green', x=categorias_2022, y=total_hombres_2022, text=total_hombres_2022_with_percent, textposition='auto', textangle=0),
-        row=1, col=1
+        go.Bar(name='Hombres 2022', 
+            #    marker_color='green',
+               marker = dict(color = 'rgba(3,187,133,0.3)',
+                              line = dict(color='rgb(0,0,0)',width=1)), 
+               x=categorias_2022, 
+               y=total_hombres_2022, 
+               text=total_hombres_2022_with_percent,
+               hovertemplate='Hombres: %{y}%<extra></extra>',  
+               textposition='auto', 
+               textangle=0),
     )   
 
     # Crear gráfico de barras para el año 2023
     fig.add_trace(
-        go.Bar(name='Mujeres 2023', x=categorias_2023, y=total_mujeres_2023, marker_color='cornflowerblue', text=total_mujeres_2023_with_percent, textposition='auto', textangle=0),
-        row=1, col=2
+        go.Bar(name='Mujeres 2023', 
+               x=categorias_2023, 
+               y=total_mujeres_2023, 
+            #    marker_color='cornflowerblue',
+               marker = dict(color = 'rgba(100,149,237,0.3)',
+                              line = dict(color='rgb(0,0,0)',width=1)), 
+               text=total_mujeres_2023_with_percent,
+               hovertemplate='Mujeres: %{y}%<extra></extra>', 
+               textposition='auto', 
+               textangle=0,
+               visible=False),
     )
 
     fig.add_trace(
-        go.Bar(name='Hombres 2023', x=categorias_2023, y=total_hombres_2023, marker_color='darkturquoise', text=total_hombres_2023_with_percent, textposition='auto', textangle=0),
-        row=1, col=2
+        go.Bar(name='Hombres 2023', 
+               x=categorias_2023, 
+               y=total_hombres_2023, 
+            #    marker_color='darkturquoise',
+               marker = dict(color = 'rgba(0,206,209,0.3)',
+                              line = dict(color='rgb(0,0,0)',width=1)),  
+               text=total_hombres_2023_with_percent,
+               hovertemplate='Hombres: %{y}%<extra></extra>', 
+               textposition='auto', 
+               textangle=0,
+               visible=False),
     )
 
     fig.update_layout(
         # title='Evolucion en el área de investigación de publicaciones (2022-2023)',
-        title_font_size=14,
+        title_font_size=12,
         template='none',
-        yaxis=dict(title='Porcentaje'),   
-        barmode='relative',
+        yaxis=dict(title='Porcentaje'),
+        barmode='stack',   
+        bargap=0.2,
         font_family='Roboto',
-        font_size=12,
-        font_color='#4d4d4d',
+        #font size de los valores en las barras
+        font=dict(size=14, color='#4d4d4d', family='Roboto'),
         yaxis2=dict(showticklabels=False),
-        xaxis=dict(domain=[0, 0.45]),
-        xaxis2=dict(domain=[0.55, 1]),
+        # xaxis=dict(domain=[0, 0.45]),
+        # xaxis2=dict(domain=[0.55, 1]),
+        xaxis=dict(type='category'),
+        xaxis2=dict(type='category'),
         xaxis_tickangle=-90,
         xaxis2_tickangle=-90,
         autosize=True,
-        margin=dict(l=50, r=50, t=80, b=180, autoexpand=True),
-        legend=dict(font=dict(size=9)),
-
+        margin=dict(l=100, r=100, t=50, b=200, autoexpand=True),
+        legend=dict(font=dict(size=12)),
+        hovermode='x',
     )
 
-    fig.update_traces(textfont=dict(size=10, color='#ffffff', family='Roboto'), textangle=-90)
+    fig.update_traces(textfont=dict(size=12, color='#000', family='Roboto'))
+
+    #agregar un dropdwon para seleccionar el año
+    fig.update_layout(
+        updatemenus=[
+            dict(
+                buttons=list([
+                    dict(label="2022",
+                         method="update",
+                         args=[{"visible": [True, True, False, False]},
+                               ]),
+                    dict(label="2023",
+                         method="update",
+                         args=[{"visible": [False, False, True, True]},
+                               ]),
+                ]),
+                direction="right",
+                showactive=True,
+                pad={"r": 10, "t": 10},
+                x=0,
+                xanchor="left",
+                y=1.38,
+                yanchor="top",
+            ),
+        ],
+    )
+
+    config = {
+        'modeBarButtonsToAdd': ['drawline',
+                                'drawopenpath',
+                                'drawcircle',
+                                'drawrect',
+                                'eraseshape'],
+        'modeBarButtonsToRemove': ['zoom', 'pan', 'select', 'autoScale', 'lasso']
+    }
+    
 
     fig.update_yaxes(tickformat=".1f%")
 
     fig2 = go.Figure()
-    fig2.add_trace(go.Bar(x=años, y=total_hombres, name='Hombres', marker_color='green', text=total_hombres_with_percent, textposition='auto', textangle=0))
-    fig2.add_trace(go.Bar(x=años, y=total_mujeres, name='Mujeres', marker_color='purple', text=total_mujeres_with_percent, textposition='auto', textangle=0))
+
+
+    fig2.add_trace(go.Bar(x=años, 
+                          y=total_hombres, 
+                          name='Hombres', 
+                        #   marker_color='green', 
+                          text=total_hombres_with_percent, 
+                          textposition='auto', 
+                          textangle=0,
+                          marker = dict(color = 'rgba(3,187,133,0.3)',
+                              line = dict(color='rgb(0,0,0)',width=1)),
+
+                          hovertemplate='Hombres: %{y}%<extra></extra>',
+                
+                          ))
+    
+    fig2.add_trace(go.Bar(x=años, 
+                          y=total_mujeres, 
+                          name='Mujeres', 
+                        #   marker_color= 'rgba(255, 174, 155, 0.5)', 
+                          text=total_mujeres_with_percent, 
+                          textposition='auto', 
+                          textangle=0,
+                          marker = dict(color = 'rgba(255,174,255,0.5)', 
+                              line = dict(color='rgb(0,0,0)',width=1),
+                            ),
+                          hovertemplate='Mujeres: %{y}%<extra></extra>',
+                          textfont=dict(size=12, color='#000', family='Roboto')   
+                          )
+                          )
 
     fig2.update_layout(
-        title='Evolución de Liderazgo en Publicaciones Científicas (2020-2023)',
+        # title='Evolución de Liderazgo en Publicaciones Científicas (2020-2023)',
         template='none', 
         yaxis=dict(title='Porcentaje'),
         xaxis=dict(title='Años', type='category'),
         barmode='stack',
+        bargap=0.6,
         paper_bgcolor='#ffffff',
         font_family='Roboto',
         font_size=12, 
         font_color='#808080',
         autosize=True,
+        hovermode='x',
     )
 
     fig3 = go.Figure()
 
-    fig3.add_trace(go.Scatter(x=años_itt, y=total_itt_mujeres, name='Mujeres', mode='lines+markers+text', textposition='bottom right', text=total_itt_mujeres_with_percent, marker=dict(color='purple', size=6)))
-    fig3.add_trace(go.Scatter(x=años_itt, y=total_itt_hombres, name='Hombres', mode='lines+markers+text', textposition='top center', text=total_itt_hombres_with_percent, marker=dict(color='green', size=6)))
+    fig3.add_trace(go.Scatter(x=años_itt, 
+                              y=total_itt_mujeres, 
+                              name='Mujeres', 
+                              mode='lines+markers+text', 
+                              textposition='bottom right', 
+                              text=total_itt_mujeres_with_percent,
+                              hovertemplate='Mujeres: %{y}%<extra></extra>',
+                              textfont=dict(size=12, color='#000', family='Roboto'),   
+                              marker=dict(color='rgba(255,174,255,0.5)', size=6)))
+    
+    fig3.add_trace(go.Scatter(x=años_itt, 
+                              y=total_itt_hombres, 
+                              name='Hombres', 
+                              mode='lines+markers+text', 
+                              textposition='top center', 
+                              text=total_itt_hombres_with_percent,
+                              hovertemplate='Hombres: %{y}%<extra></extra>',
+                              textfont=dict(size=12, color='#000', family='Roboto'),   
+                              marker=dict(color='rgba(3,187,133,0.3)', size=6)))
    
     fig3.update_layout(
         template='none',
-        title='Evolución Proyectos de Innovación y Transferencia Tecnológica (2020-2023)', 
+        # title='Evolución Proyectos de Innovación y Transferencia Tecnológica (2020-2023)', 
         yaxis=dict(title='Porcentaje'),
         xaxis=dict(title='Años', type='category'),
         paper_bgcolor='#ffffff',
         font_family='Roboto',
         font_size=12, 
-        font_color='#808080',
+        font_color='#4d4d4d',
         autosize=True,
-        hoverlabel_bgcolor='#ffffff',
-        hoverlabel_bordercolor='#ffffff',
-        hoverlabel_font_family='Roboto',
         hovermode='x',
     )
 
     fig3.update_traces(line=dict(width=1))
 
-    html = fig.to_html(full_html=False)
-    html2 = fig2.to_html(full_html=False)
-    html3 = fig3.to_html(full_html=False)
+    html = fig.to_html(full_html=False, config=config)
+    html2 = fig2.to_html(full_html=False, config=config)
+    html3 = fig3.to_html(full_html=False, config=config)
 
     context = {
         'chart': html,
