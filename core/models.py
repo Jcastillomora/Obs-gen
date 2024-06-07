@@ -32,3 +32,14 @@ class ProyectosITT(models.Model):
     total_mujeres = models.IntegerField()
     total_hombres = models.IntegerField()
     total_proyectos = models.IntegerField()
+
+class FONDEF_categorias(models.Model):
+    año = models.IntegerField()
+    categoria = models.CharField(max_length=200)
+    total_mujeres = models.IntegerField()
+    total_hombres = models.IntegerField()
+
+class FONDEF_financiamiento(models.Model):
+    año = models.IntegerField()
+    financiamiento = models.CharField(max_length=200)
+    sexo = models.CharField(max_length=200)

@@ -12,9 +12,13 @@
     <br>    
     <br>
     <div class="uk-container px-5">
-      <hr style="width: 40%; border: 1px solid">
+      <br>
+      <br>
+      <hr style="border-top: 1px solid #000; width: 50%;">
+      <br>
       <p style="color: #005fab; font-weight: 300" class="responsive-text"><strong>Líneas<br> de Acción</strong></p>
-      <hr style="width: 40%; border: 1px solid">
+      <br>
+      <hr style="border-top: 1px solid #000; width: 50%;">
       <br>
       <p class="responsive-text">
         El observatorio de Género y Ciencia agrupa el total de los indicadores en Líneas
@@ -27,62 +31,68 @@
     <br>
     <br>
     <br>
-    <div class="uk-container px-5">
-        <div class="row">
+    <div class="container-lg">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
           <!-- Segunda fila -->
           <div class="col">
-            <div class="card rounded-0">
+            <div class="daisy-card bg-base-100 shadow-xl">
               <div class="card-body">
                 <br><strong>
                 Acciones con<br>
                 Perspectiva de género</strong><br>
-                <br>
-                <a href="#" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
+                <div class="card-actions justify-end">
+                  <button class="btn btn-primary">Ver más</button>
+                </div>
+                {% comment %} <a href="{% url 'lineas_accion_1' %}" class="btn" >Ver Más</a> {% endcomment %}
               </div>
-            </div>
+            </div>  
           </div>
           <div class="col">
-            <div class="card rounded-0">
+            <div class="card bg-base-100 shadow-xl">
               <div class="card-body">
                 <br><strong>
                 Liderazgo Femenino<br>
                 I+D+i+e</strong><br>
                 <br>
-                <a href="{% url 'lineas_accion_1' %}" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
-              </div>
+                <a href="{% url 'lineas_accion_2' %}" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
             </div>
           </div>
         </div>
-        <div class="row">
-          <!-- Segunda fila -->
-          <div class="col">
-            <div class="card rounded-0">
-              <div class="card-body">
-                <br><strong>
-                Financiamiento<br>
-                y Patrocionio I+D+i+e</strong><br>
-                <br>
-                <a href="#" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card rounded-0">
-              <div class="card-body">
-                <br><strong>
-                Capital Humano</strong><br>
-                <br>
-                <br>
-                <a href="#" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
-              </div>
+        <div class="col">
+          <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+              <br><strong>
+              Financiamiento<br>
+              y Patrocionio I+D+i+e</strong><br>
+              <br>
+              <a href="{% url 'lineas_accion_3' %}" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
             </div>
           </div>
         </div>
-      </div>
-      <br>
-      <br>
+        <div class="col">
+          <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+              <br><strong>
+              Capital<br> Humano</strong><br>
+              <a href="{% url 'lineas_accion_4' %}" class="btn btn-outline-primary rounded-0" type="button">Ver Más</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <br>
+    <br>
     </div>
   </div>
+  </div>
+  <div class="card lg:card-side bg-base-100 shadow-xl">
+    <figure><img src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album"/></figure>
+    <div class="card-body">
+      <h2 class="card-title">New album is released!</h2>
+      <p>Click the button to listen on Spotiwhy app.</p>
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary">Listen</button>
+      </div>
+    </div>
   </div>
 
   <script>

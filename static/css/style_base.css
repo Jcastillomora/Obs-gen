@@ -1,28 +1,29 @@
+/* 
 .card {
     margin-bottom: 20px;
     color: #005fab;
-    background-color: #fff; /* Fondo blanco para la tarjeta */
-    border-color: #005fab !important; /* Borde de la tarjeta */
+    background-color: #fff; 
+    border-color: #005fab !important; 
 }
 
 .card:hover {
-    background-color: #005fab; /* Cambia el color de fondo al azul al pasar el mouse */
-    color: #fff; /* Cambia el color del texto a blanco al pasar el mouse */
+    background-color: indigo!important; 
+    color: #fff; 
 }
 
 .btn {
-    background-color: #fff !important; /* Fondo blanco para el botón */
-    border-color: #005fab !important; /* Borde del botón */
-    color: #005fab !important; /* Color del texto del botón */
+    background-color: #fff !important; 
+    border-color: #005fab !important;
+    color: #005fab !important; 
     text-decoration: none;
 }
 
 .btn:hover {
-    background-color: #fff !important; /* Cambia el fondo del botón a azul al pasar el mouse */
-    border-color: #005fab !important; /* Cambia el color del borde a blanco al pasar el mouse */
-    color: #005fab !important; /* Cambia el color del texto a blanco al pasar el mouse */
+    background-color: #fff !important; 
+    border-color: #005fab !important; 
+    color: #005fab !important; 
     text-decoration: none;
-}
+} */
 
 .responsive-text {
     font-size: 22px;
@@ -54,9 +55,9 @@ em {
 
 @media (max-width: 480px) {  
     .responsive-text {
-        font-size: 15px;
-        text-align: justify;
-        width: 100%;
+        font-size: 14px;
+        /* width: 100%; */
+        text-align: left;
     }
 
     .uk-icon {
@@ -101,4 +102,25 @@ em {
 
 footer li a {
     text-decoration: none!important; /* Elimina el subrayado predeterminado */
+}
+
+/* custom_plotly.css */
+
+/* Asegúrate de que el modebar de Plotly se muestre horizontalmente */
+.modebar-container {
+    flex-direction: row !important;  /* Fuerza la dirección de los elementos a horizontal */
+    display: flex !important;  /* Asegura que los elementos se dispongan en un contenedor flexible */
+    justify-content: center !important;  /* Centra los botones horizontalmente */
+    align-items: center !important;  /* Alinea verticalmente los botones al centro */
+}
+
+.modebar {
+    display: flex !important;
+    flex-direction: row !important;  /* Asegura que los botones se alineen horizontalmente */
+    align-items: center !important;  /* Alinea verticalmente los botones al centro */
+}
+
+.modebar-btn {
+    margin: 0 5px !important;  /* Espaciado horizontal entre los botones */
+    display: inline-block !important;  /* Asegura que los botones se muestren en línea */
 }

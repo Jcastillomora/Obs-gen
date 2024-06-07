@@ -1,5 +1,5 @@
 from import_export import resources, fields
-from .models import AcademicosDAP, PIDitt, LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT
+from .models import AcademicosDAP, PIDitt, LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT, FONDEF_categorias, FONDEF_financiamiento
 
 class AcademicosDAPResource(resources.ModelResource):
     class Meta:
@@ -24,4 +24,14 @@ class LiderazgoPublicacionesResource(resources.ModelResource):
 class ProyectosITTResource(resources.ModelResource):
     class Meta:
         model = ProyectosITT
+        import_id_fields = ['año']
+
+class FONDEF_categoriasResource(resources.ModelResource):
+    class Meta:
+        model = FONDEF_categorias
+        import_id_fields = ['año']
+
+class FONDEF_financiamientoResource(resources.ModelResource):
+    class Meta:
+        model = FONDEF_financiamiento
         import_id_fields = ['año']

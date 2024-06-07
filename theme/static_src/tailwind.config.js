@@ -5,7 +5,8 @@
  * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
  */
 
-module.exports = {
+module.exports ={
+    
     content: [
         /**
          * HTML. Paths to Django template files that will contain Tailwind CSS classes.
@@ -43,8 +44,60 @@ module.exports = {
         './node_modules/flowbite/**/*.js',
     ],
     theme: {
-        extend: {},
+        extend: {
+
+          colors: {
+            indigo: {
+              600: '#4f46e5',
+              950: '#1c2541', // Agrega este color si no está disponible en tu configuración actual
+            },
+          },
+
+        },
+
     },
+
+    darkMode: 'class',
+  theme: {
+    extend: {
+    },
+    fontFamily: {
+      'body': [
+        'Roboto', 
+        'ui-sans-serif', 
+        'system-ui', 
+        '-apple-system', 
+        'system-ui', 
+        'Segoe UI', 
+        'Roboto', 
+        'Helvetica Neue', 
+        'Arial', 
+        'Noto Sans', 
+        'sans-serif', 
+        'Apple Color Emoji', 
+        'Segoe UI Emoji', 
+        'Segoe UI Symbol', 
+        'Noto Color Emoji'
+      ],
+      'sans': [
+        'Roboto', 
+        'ui-sans-serif', 
+        'system-ui', 
+        '-apple-system', 
+        'system-ui', 
+        'Segoe UI', 
+        'Roboto', 
+        'Helvetica Neue', 
+        'Arial', 
+        'Noto Sans', 
+        'sans-serif', 
+        'Apple Color Emoji', 
+        'Segoe UI Emoji', 
+        'Segoe UI Symbol', 
+        'Noto Color Emoji'
+      ]
+    }
+  },
     plugins: [
         /**
          * '@tailwindcss/forms' is the forms plugin that provides a minimal styling
@@ -54,6 +107,9 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
-        require('flowbite/plugin')
+        require('tailwindcss-gradients'),
+        require('flowbite/plugin'),
+        require('tailwindcss-animate'),
     ],
 }
+

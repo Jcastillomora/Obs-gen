@@ -1,0 +1,47 @@
+<!--Navbar Lineas Acción-->
+<nav class="uk-navbar-container" uk-navbar style="font-size: 24px!important">
+    <div class="uk-navbar-center">
+        <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas2" uk-toggle>
+            <span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> <span class="uk-margin-small-left">Líneas de Acción</span>
+        </a>
+        <ul class="uk-navbar-nav uk-visible@m">
+            <li class="uk-navbar-divider" style="border-right: 2px solid #dfdfdf; margin-top: 20px; margin-bottom: 20px;"></li>
+            <li>
+                <a href="{% url 'lineas_accion_1' %}" style="text-transform: none">Acciones con Perspectiva de Género</a>
+            </li>
+            <li class="uk-navbar-divider" style="border-right: 2px solid #dfdfdf; margin-top: 20px; margin-bottom: 20px;"></li>
+            <li>
+                <a href="{% url 'lineas_accion_2' %}" style="text-transform: none">Liderazgo Femenino</a>
+            </li>
+            <li class="uk-navbar-divider" style="border-right: 2px solid #dfdfdf; margin-top: 20px; margin-bottom: 20px;"></li>
+            <li>
+                <a href="{% url 'lineas_accion_3' %}" style="text-transform: none">Financiamiento y Patrocinio</a>
+            </li>
+            <li class="uk-navbar-divider" style="border-right: 2px solid #dfdfdf; margin-top: 20px; margin-bottom: 20px;"></li>
+            <li>
+                <a href="{% url 'lineas_accion_4' %}" style="text-transform: none">Capital Humano</a>
+            </li>
+            <li class="uk-navbar-divider" style="border-right: 2px solid #dfdfdf; margin-top: 20px; margin-bottom: 20px;"></li>
+        </ul>
+    </div>
+</nav>
+<!-- Offcanvas Menu -->
+<div id="offcanvas2" uk-offcanvas='flip: true'>
+    <div class="uk-offcanvas-bar">
+        <ul class="uk-nav uk-nav-default">
+            <li>
+                <a href="{% url 'lineas_accion_1' %}">Acciones con Perspectiva de Género</a>
+            </li>
+            <li>
+                <a href="{% url 'lineas_accion_2' %}">Liderazgo Femenino</a>
+            </li>
+            <li>
+                <a href="{% url 'lineas_accion_3' %}">Financiamiento y Patrocinio</a>
+            </li>
+            <li>
+                <a href="{% url 'lineas_accion_4' %}">Capital Humano</a>
+            </li>
+        </ul>
+    </div>
+</div>
+

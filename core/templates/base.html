@@ -1,4 +1,4 @@
-{% load static %}{% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,100 +15,27 @@
     <!-- Plotly CDN JS -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-    
-    {% comment %} <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" /> {% endcomment %}
-    
     <!--Favicon-->
     <link rel="icon" href="{% static 'img/estadisticas.png' %}" type="image/png" sizes="16x16">
 
-    {% comment %} <link rel="stylesheet" href="{% static 'css/style_base.css' %}"> {% endcomment %}
-    {% compress css%}
-    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
-    {% endcompress %}
-    {% comment %} <style>
-      /* Estilo adicional para personalizar */
+    {% comment %} <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}"> {% endcomment %}
 
-      .card {
-        margin-bottom: 20px;
-        color: #005fab;
-        background-color: #fff; /* Fondo blanco para la tarjeta */
-        border-color: #005fab!important; /* Borde de la tarjeta */
-      }
-
-      .card:hover {
-        background-color: #005fab; /* Cambia el color de fondo al azul al pasar el mouse */
-        color: #fff; /* Cambia el color del texto a blanco al pasar el mouse */
-      }
-      
-      .btn {
-        background-color: #fff!important; /* Fondo blanco para el botón */
-        border-color: #005fab!important; /* Borde del botón */
-        color: #005fab!important; /* Color del texto del botón */
-        text-decoration: none;
-      }
-
-      .btn:hover {
-        background-color: #fff!important; /* Cambia el fondo del botón a azul al pasar el mouse */
-        border-color: #005fab!important; /* Cambia el color del borde a blanco al pasar el mouse */
-        color: #005fab!important; /* Cambia el color del texto a blanco al pasar el mouse */
-        text-decoration: none;
-      }
-
-      .responsive-text {
-        font-size: 24px;
-        font-weight: 300;
-      }
-
-      .uk-navbar-container {
-        background-color: #fff!important;
-      }
-
-      nav li {
-        display: inline-block; /* Muestra los elementos de la lista como bloques en línea */
-        margin: 0 10px; /* Agrega espacio entre elementos de la lista */
-      }
-      
-
-      nav li a {
-        color: #005fab!important; /* Color de la tipografía */
-        text-decoration: none; /* Elimina el subrayado predeterminado */
-        font-family: 'Roboto', sans-serif; /* Familia de fuentes */
-        font-size: 14px; /* Tamaño de la fuente */
-      }
-
-      em {
-        color: inherit; /* O cualquier otro color deseado */
-    }
-      
-      @media (max-width: 480px) {
-        .responsive-text {
-          font-size: 14px;
-          text-align: justify;
-        }
-
-        .plotly-div {
-          width: 100%!important;
-          height: 100%;
-        }
-      }
-    </style>  {% endcomment %}
 
 {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
 {% bootstrap_messages %}
-    
+
     <title>Observatorio Género y Ciencia</title>
 </head>
 <body>
 
 <!-- Alerta -->
-<div class="container-fluid p-0 m-0 text-center bg-indigo-300" style="color: #4d4d4d;">
+<div class="md:container md:mx-auto p-0 m-0 text-center bg-indigo-300" style="color: #4d4d4d;">
   <div style="height: 5px;"></div>
   Observatorio de género y ciencia UFRO en desarrollo
   <div style="height: 5px;"></div>
 </div>
 
 {% block navbar %}
-
     <!-- NavBar Menu background-color: #d4d4d4!important-->
     <nav class="uk-navbar-container" uk-navbar data-uk-sticky style="background-color: #B4C6FC!important; font-size: 24px!important">
         <div class="uk-navbar-center">
@@ -125,16 +52,16 @@
                     <div class="uk-navbar-dropdown" style="background-color: #B4C6FC!important">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
                             <li>
-                                <a href="#" style="text-transform: none">Acciones con Perspectiva de Género</a>
+                                <a href="{% url 'lineas_accion_1' %}" style="text-transform: none">Acciones con Perspectiva de Género</a>
                             </li>
                             <li>
-                                <a href="{% url 'lineas_accion_1' %}">Liderazgo Femenino I+D+i+e</a>
+                                <a href="{% url 'lineas_accion_2' %}">Liderazgo Femenino I+D+i+e</a>
                             </li>
                             <li>
-                                <a href="#">Financiamiento y Patrocinio I+D+i+e</a>
+                                <a href="{% url 'lineas_accion_3' %}">Financiamiento y Patrocinio I+D+i+e</a>
                             </li>
                             <li>
-                                <a href="#">Capital Humano</a>
+                                <a href="{% url 'lineas_accion_4' %}">Capital Humano</a>
                             </li>
                         </ul>
                     </div>
@@ -162,16 +89,16 @@
                     <a href="{% url 'lineas_accion' %}">Lineas de Acción</a>
                     <ul class="uk-nav-sub">
                         <li>
-                            <a href="#" target="_blank">Acciones con Perspectiva de Género</a>
+                            <a href="{% url 'lineas_accion_1' %}" target="_blank">Acciones con Perspectiva de Género</a>
                         </li>
                         <li>
-                            <a href="{% url 'lineas_accion_1' %}" target="_blank">Liderazgo Femenino I+D+i+e</a>
+                            <a href="{% url 'lineas_accion_2' %}" target="_blank">Liderazgo Femenino I+D+i+e</a>
                         </li>
                         <li>
-                            <a href="#" target="_blank">Financiamiento y Patrocinio I+D+i+e</a>
+                            <a href="{% url 'lineas_accion_3' %}" target="_blank">Financiamiento y Patrocinio I+D+i+e</a>
                         </li>
                         <li>
-                            <a href="#" target="_blank">Capital Humano</a>
+                            <a href="{% url 'lineas_accion_4' %}" target="_blank">Capital Humano</a>
                         </li>
                     </ul>
                 </li>
@@ -185,7 +112,6 @@
         </div>
     </div>
    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
 {% endblock navbar %}
 
@@ -197,7 +123,7 @@
 <!-- UIkit JS -->
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit-icons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
 
 </body>
 </html>
