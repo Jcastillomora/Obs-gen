@@ -19,6 +19,16 @@
     <br>
     <hr style="border-top: 1px solid #000"> 
     <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+            <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"" style="text-align: center"><strong>Porcentaje de Académicas/os acreditados en el año 2023, según total programas de Postgrado</strong></p>
+            <br>
+            {{ chart|safe }}
+            <p style="text-align: center" class="text-xs font-normal text-gray-500 lg:text-xl dark:text-gray-400"><em>Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera.</em></p>
+            </div>
+        </div>  
+    </div>
     {% comment %} <p class="responsive-text" style="text-align: center"><strong>Evolución del porcentaje en el área de investigación del monto financiamiento FONDEF, según sexo y año (2022-2023)</strong></p>
     <div class="container-fluid">
         <div class="row">

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models import AcademicosDAP, PIDitt, LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT, FONDEF_categorias, FONDEF_financiamiento
+from core.models import LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT, FONDEF_categorias, FONDEF_financiamiento, Academicosdap_acreditados
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from django.http import HttpResponse
@@ -503,5 +503,84 @@ def plot3(request):
     return render(request, 'lineas_accion_3.html', context)
 
 
+
+def plot4(request):
+    adap = Academicosdap_acreditados.objects.all()
+    años = list(adap.values_list('año', flat=True))
+    total_mujeres = list(adap.values_list('total_mujeres', flat=True))
+    total_hombres = list(adap.values_list('total_hombres', flat=True))
+    programa_postgrado = list(adap.values_list('programa_postgrado', flat=True))
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Bar(x=programa_postgrado, 
+                          y=total_hombres, 
+                          name='Hombres', 
+                        #   marker_color='green', 
+                          text=total_hombres, 
+                          textposition='auto', 
+                          textangle=0,
+                          marker = dict(color = 'rgba(3,187,133,0.3)',
+                              line = dict(color='rgb(0,0,0)',width=1)),
+
+                          hovertemplate='Hombres: %{y}%<extra></extra>',
+                
+                          ))
+    
+    fig.add_trace(go.Bar(x=programa_postgrado, 
+                          y=total_mujeres, 
+                          name='Mujeres', 
+                        #   marker_color= 'rgba(255, 174, 155, 0.5)', 
+                          text=total_mujeres, 
+                          textposition='auto', 
+                          textangle=0,
+                          marker = dict(color = 'rgba(255,174,255,0.5)', 
+                              line = dict(color='rgb(0,0,0)',width=1),
+                            ),
+                          hovertemplate='Mujeres: %{y}%<extra></extra>',
+                          textfont=dict(size=12, color='#000', family='Roboto')   
+                          )
+                          )
+
+    fig.update_layout(
+        # title='Evolución de Liderazgo en Publicaciones Científicas (2020-2023)',
+        template='none', 
+        yaxis=dict(title='Porcentaje'),
+        xaxis=dict(title='Programa Postgrado', type='category'),
+        xaxis_tickangle=-90,
+        barmode='stack',
+        bargap=0.6,
+        paper_bgcolor='#ffffff',
+        font_family='Roboto',
+        font_size=12, 
+        font_color='#808080',
+        autosize=True,
+        margin=dict(l=100, r=100, t=50, b=200, autoexpand=True),
+        hovermode='x',
+    )
+
+    config = {
+        'modeBarButtonsToAdd': ['drawline',
+                                'drawopenpath',
+                                'drawcircle',
+                                'drawrect',
+                                'eraseshape'],
+        'modeBarButtonsToRemove': ['zoom', 'pan', 'select', 'autoScale', 'lasso'],
+        'responsive': 'true'
+    }
+    
+
+    html = fig.to_html(full_html=False, config=config)
+
+    context = {
+        'chart': html,
+        'chart_id': 'chart',
+    }
+
+    return render(request, 'lineas_accion_4.html', context)
+
+
+
+    
 
 

@@ -142,3 +142,5 @@ NPM_BIN_PATH = 'npm.cmd'
 TAILWIND_CSS_PATH = 'css/dist/styles.css'
 
 TAILWIND_DEV_SERVER = False
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'

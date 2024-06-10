@@ -39,7 +39,14 @@ class FONDEF_categorias(models.Model):
     total_mujeres = models.IntegerField()
     total_hombres = models.IntegerField()
 
+# pendiente
 class FONDEF_financiamiento(models.Model):
     año = models.IntegerField()
     financiamiento = models.CharField(max_length=200)
     sexo = models.CharField(max_length=200)
+
+class Academicosdap_acreditados(models.Model):
+    año = models.IntegerField()
+    total_mujeres = models.IntegerField()
+    total_hombres = models.IntegerField()
+    programa_postgrado = models.CharField(max_length=200)

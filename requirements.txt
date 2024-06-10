@@ -17,8 +17,9 @@ dash-html-components==2.0.0
 dash-table==5.0.0
 defusedxml==0.7.1
 diff-match-patch==20230430
-Django==5.0.6
+Django==4.2.13
 django-appconf==1.0.6
+django-bootstrap-v5==1.0.11
 django-browser-reload==1.12.1
 django-extensions==3.2.3
 django-import-export==3.3.7
@@ -51,6 +52,7 @@ requests==2.32.2
 rich==13.7.1
 rjsmin==1.2.1
 scipy==1.12.0
+setuptools==70.0.0
 six==1.16.0
 soupsieve==2.5
 sqlparse==0.4.4
