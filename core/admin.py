@@ -31,7 +31,7 @@ class FONDEF_categoriasAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 class FONDEF_financiamientoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = FONDEF_financiamientoResource
-    list_display = ('año', 'financiamiento', 'sexo')
+    list_display = ('año', 'financiamiento_mujeres', 'financiamiento_hombres', 'financiamiento_total')
 
 class Academicosdap_acreditadosAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = Academicosdap_acreditadosResource

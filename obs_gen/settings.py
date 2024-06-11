@@ -121,9 +121,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    BASE_DIR / "theme/static",
 ]
 
 # Default primary key field type
@@ -142,5 +143,3 @@ NPM_BIN_PATH = 'npm.cmd'
 TAILWIND_CSS_PATH = 'css/dist/styles.css'
 
 TAILWIND_DEV_SERVER = False
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'

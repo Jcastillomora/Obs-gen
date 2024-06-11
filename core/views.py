@@ -145,6 +145,8 @@ def plot2(request):
         margin=dict(l=100, r=100, t=50, b=200, autoexpand=True),
         legend=dict(font=dict(size=12)),
         hovermode='x',
+        # paper_bgcolor='#E5EDFF',
+        # plot_bgcolor='#E5EDFF',
     )
 
     fig.update_traces(textfont=dict(size=12, color='#000', family='Roboto'))
@@ -271,6 +273,8 @@ def plot2(request):
 
     fig3.update_traces(line=dict(width=1))
 
+    fig3.update_yaxes(rangemode="tozero")
+
     html = fig.to_html(full_html=False, config=config)
     html2 = fig2.to_html(full_html=False, config=config)
     html3 = fig3.to_html(full_html=False, config=config)
@@ -288,6 +292,10 @@ def plot2(request):
 
 
 def plot3(request):
+
+    def add_percentage_symbol(values):
+        return [f'{value:.0f}%' for value in values]
+
     # Usar datos de FONDEF_categorias
     fc = FONDEF_categorias.objects.all()
 
@@ -296,14 +304,18 @@ def plot3(request):
 
     # Filtrar los datos de FONDEF_financiamiento
     años_ff = list(ff.values_list('año', flat=True))
-    total_ff = list(ff.values_list('financiamiento', flat=True))
-    sexo_ff = list(ff.values_list('sexo', flat=True))
+    financiamiento_mujeres = list(ff.values_list('financiamiento_mujeres', flat=True))
+    financiamiento_hombres = list(ff.values_list('financiamiento_hombres', flat=True))
+    financiamiento_total = list(ff.values_list('financiamiento_total', flat=True))
 
     # Filtrar los datos de FONDEF_categorias
     años = list(fc.values_list('año', flat=True))
     categorias = list(fc.values_list('categoria', flat=True))
     total_mujeres = list(fc.values_list('total_mujeres', flat=True))
     total_hombres = list(fc.values_list('total_hombres', flat=True))
+
+    total_mujeres = add_percentage_symbol(total_mujeres)
+    total_hombres = add_percentage_symbol(total_hombres)
 
     fig = go.Figure()
     
@@ -346,7 +358,7 @@ def plot3(request):
     fig.update_layout(
         # title='Evolución de FONDEF por Categorías (2020-2023)',
         template='none',
-        yaxis=dict(title='Total'),
+        yaxis=dict(title='Porcentaje'),
         barmode='stack',   
         bargap=0.2,
         font_family='Roboto',
@@ -398,50 +410,47 @@ def plot3(request):
     años_unicos_ff = sorted(set(años_ff))
 
     for año in años_unicos_ff:
-        categorias_año_ff = ['financiamiento']
-        total_mujeres_año_ff = [total_ff[i] for i in range(len(años_ff)) if años_ff[i] == año and sexo_ff[i] == 'Mujer']
-        total_hombres_año_ff = [total_ff[i] for i in range(len(años_ff)) if años_ff[i] == año and sexo_ff[i] == 'Hombre']
+        
+        total_mujeres_año_ff = [financiamiento_mujeres[i] for i in range(len(años_ff)) if años_ff[i] == año]
+        total_hombres_año_ff = [financiamiento_hombres[i] for i in range(len(años_ff)) if años_ff[i] == año]
 
-        if total_mujeres_año_ff:  # Verificar si hay datos para mujeres
-            fig2.add_trace(
-                go.Bar(name=f'Financiamiento Mujeres {año}', 
-                       x=categorias_año_ff, 
-                       y=total_mujeres_año_ff, 
-                       marker=dict(color='rgba(255,174,255,0.5)', 
-                                   line=dict(color='rgb(0,0,0)', width=1)),
-                       text=total_mujeres_año_ff,
-                       hovertemplate=f'Financiamiento Mujeres {año}: {{%y}}<extra></extra>',
-                       textposition='auto', 
-                       textangle=0,
-                       visible=(año == años_unicos_ff[0])),
-            )
+        fig2.add_trace(
+            go.Bar(name=f'Financiamiento Mujeres {año}', 
+                   x=['Mujeres'], 
+                   y=total_mujeres_año_ff, 
+                   marker=dict(color='rgba(255,174,255,0.5)', 
+                               line=dict(color='rgb(0,0,0)', width=1)),
+                   text=total_mujeres_año_ff,
+                   hovertemplate='Financiamiento Mujeres: $%{y} M<extra></extra>',
+                   textposition='auto', 
+                   textangle=0,
+                   visible=(año == años_unicos_ff[0])),
+        )
 
-        if total_hombres_año_ff:  # Verificar si hay datos para hombres
-            fig2.add_trace(
-                go.Bar(name=f'Financiamiento Hombres {año}', 
-                       x=categorias_año_ff, 
-                       y=total_hombres_año_ff, 
-                       marker=dict(color='rgba(3,187,133,0.3)',
-                                   line=dict(color='rgb(0,0,0)', width=1)), 
-                       text=total_hombres_año_ff,
-                       hovertemplate=f'Financiamiento Hombres {año}: {{%y}}<extra></extra>',  
-                       textposition='auto', 
-                       textangle=0,
-                       visible=(año == años_unicos_ff[0])),
-            )
+        fig2.add_trace(
+            go.Bar(name=f'Financiamiento Hombres {año}', 
+                   x=['Hombres'],
+                   y=total_hombres_año_ff, 
+                   marker=dict(color='rgba(3,187,133,0.3)',
+                               line=dict(color='rgb(0,0,0)', width=1)), 
+                   text=total_hombres_año_ff,
+                   hovertemplate='Financiamiento Hombres: $ %{y} M<extra></extra>',  
+                   textposition='auto', 
+                   textangle=0,
+                   visible=(año == años_unicos_ff[0])),
+        )
 
     fig2.update_layout(
         template='none',
-        yaxis=dict(title='Total Financiamiento'),
-        barmode='stack',   
+        yaxis=dict(title='Total Financiamiento ($ M)'),
+        barmode='group',   
         bargap=0.2,
         font_family='Roboto',
         font=dict(size=14, color='#4d4d4d', family='Roboto'),
         yaxis2=dict(showticklabels=False),
-        xaxis=dict(type='category'),
-        xaxis_tickangle=-90,
+        # xaxis=dict(type='category'),
         autosize=True,
-        margin=dict(l=100, r=100, t=50, b=200, autoexpand=True),
+        margin=dict(l=100, r=100, t=50, b=100, autoexpand=True),
         legend=dict(font=dict(size=12)),
         hovermode='x',
     )
@@ -449,16 +458,16 @@ def plot3(request):
     # Agregar un dropdown para seleccionar el año en FONDEF_financiamiento
     botones_ff = []
     for i, año in enumerate(años_unicos_ff):
-        # visibilidad = [False] * len(fig2.data)
-        # visibilidad[2*i] = True
-        # visibilidad[2*i + 1] = True
+        visibilidad = [False] * len(fig2.data)
+        visibilidad[2*i] = True
+        visibilidad[2*i + 1] = True
         botones_ff.append(
             dict(
-                label=str(año),
+                label=str(años_ff[i]),
                 method="update",
                 args=[
-                      {"title": f"Financiamiento del año {año}"},
-                      {"visible": [True, True, False, False] if i == 0 else [False, False, True, True]}
+                      {"visible": visibilidad},
+                      {"title": f"Financiamiento ($ M) del año {año}"}
                       ],
             )
         )
@@ -505,12 +514,19 @@ def plot3(request):
 
 
 def plot4(request):
+
+    def add_percentage_symbol(values):
+        return [f'{value:.0f}%' for value in values]
+
     adap = Academicosdap_acreditados.objects.all()
     años = list(adap.values_list('año', flat=True))
     total_mujeres = list(adap.values_list('total_mujeres', flat=True))
     total_hombres = list(adap.values_list('total_hombres', flat=True))
     programa_postgrado = list(adap.values_list('programa_postgrado', flat=True))
 
+    total_mujeres = add_percentage_symbol(total_mujeres)
+    total_hombres = add_percentage_symbol(total_hombres)
+    
     fig = go.Figure()
 
     fig.add_trace(go.Bar(x=programa_postgrado, 
@@ -546,7 +562,7 @@ def plot4(request):
         # title='Evolución de Liderazgo en Publicaciones Científicas (2020-2023)',
         template='none', 
         yaxis=dict(title='Porcentaje'),
-        xaxis=dict(title='Programa Postgrado', type='category'),
+        xaxis=dict(title='Programas Postgrado', type='category'),
         xaxis_tickangle=-90,
         barmode='stack',
         bargap=0.6,

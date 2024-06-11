@@ -42,8 +42,9 @@ class FONDEF_categorias(models.Model):
 # pendiente
 class FONDEF_financiamiento(models.Model):
     año = models.IntegerField()
-    financiamiento = models.CharField(max_length=200)
-    sexo = models.CharField(max_length=200)
+    financiamiento_mujeres = models.FloatField()
+    financiamiento_hombres = models.FloatField()
+    financiamiento_total = models.FloatField()
 
 class Academicosdap_acreditados(models.Model):
     año = models.IntegerField()

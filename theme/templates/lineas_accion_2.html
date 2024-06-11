@@ -4,36 +4,39 @@
 {% include 'banner_lineas.html' %}
   {% comment %} <div class="container-fluid" style="background-color: #dfdfdf;"> {% endcomment %}
   {% comment %} <div class="container" style="width: 80%; background-color: #ffffff; margin: 0 auto;">  {% endcomment %}
-    <div class="container-lg dark:bg-indigo-950 dark:text-white" style="font-family: 'Roboto', sans-serif;"">
+    <div class="container-lg dark:bg-indigo-950 dark:text-white" style="font-family: 'Roboto', sans-serif;">
       <br>
       <br>
       <hr style="border-top: 1px solid; width: 50%;" class="dark:bg-white">
       <br>
-      <p style="color: #005fab; font-weight: 300" class="responsive-text"><h1 class="animate-pulse mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Línea<br>de Acción 2</span></h1></p>
+      <h1 class="animate-pulse mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Línea<br>de Acción 2</span></h1>
       <br>
       <hr style="border-top: 1px solid; width: 50%;" class="dark:bg-white">
       <br>
-      <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"><strong>Liderazgo Femenino I+D+i+e</strong><br>
-      Los reportes estadísticos correspondientes a este ítem, guardan relación con el 
-      liderazgo femenino en proyectos de I+D+i+e, puestos de trabajo, número de contratos 
-      de I+D, y el número de artículos de carácter académico en donde las mujeres
-      aparezcan como autoras principales.</p>
+      <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white">Liderazgo Femenino I+D+i+e<br></p>
+      <p class="text-lg font-thin text-zinc-950 lg:text-xl dark:text-white">
+        <br>
+        Los reportes estadísticos correspondientes a este ítem, guardan relación con el 
+        liderazgo femenino en proyectos de I+D+i+e, puestos de trabajo, número de contratos 
+        de I+D, y el número de artículos de carácter académico en donde las mujeres
+        aparezcan como autoras principales.
+      </p>
       <br>
       <hr style="border-top: 1px solid #000"> 
       <br>
-      <div class="container dark:bg-indigo-400">
+      <div class="container">
         <div class="row">
           <div class="col-md-8">
-            <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400" style="text-align: center"><strong>Evolución en el área de investigación de publicaciones 2022-2023</strong></p>  
+            <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución en el área de investigación de publicaciones 2022-2023</p>  
             <br>
             {{ chart|safe }}
-            <p style="text-align: center" class="text-xs font-normal text-gray-500 lg:text-xl dark:text-gray-400"><em>Fuente: Elaboración propia, a partir de las bases de Productividad Científica 
+            <p style="text-align: center" class="text-xs font-thin text-zinc-950 lg:text-xl dark:text-white"><em>Fuente: Elaboración propia, a partir de las bases de Productividad Científica 
               de la Universidad de La Frontera 2022-2023.</em></p>
           </div>
         </div>  
       </div>
       <br>
-      <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+      {% comment %} <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
         El área de investigación de las publicaciones académicas resulta de las definiciones 
         de “research areas” de Web of Science (WOS), de acuerdo al área de investigación que 
         dicta la Organización para la Cooperación y el Desarrollo Económico (OCDE). 
@@ -48,21 +51,21 @@
         que es en Ingeniería y Tecnología donde las mujeres aumentaron mayormente su participación 
         de un año a otro, ya que la diferencia en la brecha para el año 2022 fue de 70 puntos 
         porcentuales, disminuyendo considerablemente a 28 puntos porcentuales para el año 2023. 
-      </p>
+      </p> {% endcomment %}
       <br>
       <hr>
       <br>
         <div class="row">
           <div class="col-md-6">
-            <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400" style="text-align: center"><strong>Evolución de Liderazgo en Publicaciones Científicas (2020-2023)</strong></p>
+            <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución de Liderazgo en Publicaciones Científicas (2020-2023)</p>
             <br>
             {{ chart2|safe }}
-            <p style="text-align: center" class="text-xs font-normal text-gray-500 lg:text-xl dark:text-gray-400"><em>Fuente: Elaboración propia, a partir de las bases de Productividad Científica 
+            <p style="text-align: center" class="text-xs font-thin text-zinc-950 lg:text-xl dark:text-white"><em>Fuente: Elaboración propia, a partir de las bases de Productividad Científica 
               de la Universidad de La Frontera 2022-2023.</em></p>
           </div>
         </div>  
       <br>
-      <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+      {% comment %} <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
           Las publicaciones lideradas en la Universidad de La Frontera para el período 2020-2023, 
           hacen referencia a las publicaciones de la base de datos de referencias bibliográficas 
           Web of Science (WOS). A su vez, se consideran líderes de las mismas a quienes cumplan 
@@ -78,23 +81,23 @@
           la tendencia de los últimos años en cuanto a productividad científica, se podría esperar 
           para el futuro al menos una estabilidad en el porcentaje de publicaciones lideradas, 
           mas no una baja relevante de la misma. 
-      </p>
+      </p> {% endcomment %}
       <br>
       <hr>
       <br>
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-8">
-          <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"" style="text-align: center"><strong>Evolución Proyectos de Innovación y Transferencia Tecnológica (2022-2023)</strong></p>
+          <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución Proyectos de Innovación y Transferencia Tecnológica (2022-2023)</p>
           <br>  
           {{ chart3|safe }}
-          <p style="text-align: center" class="text-xs font-normal text-gray-500 lg:text-xl dark:text-gray-400"><em>Fuente: Elaboración propia, a partir de la base de datos Unidad de
+          <p style="text-align: center" class="text-xs font-thin text-zinc-950 lg:text-xl dark:text-white"><em>Fuente: Elaboración propia, a partir de la base de datos Unidad de
         Transferencia Tecnológica de la Universidad de La Frontera 2020-2023.</em></p>
           </div>
         </div>  
       </div>
       <br>
-      <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+      {% comment %} <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
         Los Proyectos de Innovación y Transferencia Tecnológica refieren a aquellos proyectos adjudicados 
         desde la Unidad de Transferencia Tecnológica de la Universidad de La Frontera.
         De acuerdo al gráfico, se observa que han sido los hombres quienes han liderado a través de 
@@ -106,7 +109,7 @@
         para luego en el año 2023 ser de tan solo dos puntos porcentuales. 
         Es de esperar, si se mantiene la misma tendencia a través de los años, que las mujeres 
         se mantengan o inclusive, suban en el porcentaje del liderazgo en Proyectos de Innovación y Transferencia Tecnológica.    
-      </p>
+      </p> {% endcomment %}
     <br>
     <br>
     {% include 'nav_lineas.html' %}  

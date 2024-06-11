@@ -11,7 +11,9 @@
     <br>
     <hr style="border-top: 1px solid #000; width: 50%">
     <br>
-    <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"><strong>Capital Humano</strong><br>
+    <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white">Capital Humano<br></p>
+    <br>
+    <p class="text-lg font-thin text-zinc-950 lg:text-xl dark:text-white">
         Los indicadores correspondientes a este ítem, guardan relación con la Jornada Completa 
         Equivalente (JCE), la diferencia en el salario promedio anual entre hombres y mujeres 
         y datos provenientes de la Dirección Académica de Postgrado (DAP).
@@ -22,10 +24,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-            <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"" style="text-align: center"><strong>Porcentaje de Académicas/os acreditados en el año 2023, según total programas de Postgrado</strong></p>
+            <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Porcentaje de Académicas/os acreditados en el año 2023, según total programas de Postgrado</p>
             <br>
             {{ chart|safe }}
-            <p style="text-align: center" class="text-xs font-normal text-gray-500 lg:text-xl dark:text-gray-400"><em>Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera.</em></p>
+            <p style="text-align: center" class="text-xs font-thin text-zinc-950 lg:text-xl dark:text-white"><em>Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera.</em></p>
             </div>
         </div>  
     </div>
@@ -44,5 +46,6 @@
     <br>
     <br>
 </div>
+
 {% include 'nav_lineas.html' %}
 {% endblock content %}
