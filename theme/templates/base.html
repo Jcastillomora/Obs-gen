@@ -67,7 +67,7 @@
                 <div class="hidden justify-between w-full lg:flex lg:w-auto lg:order-1 text-zinc-950" id="mobile-menu-2">
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0 text-zinc-950 dark:text-white">
                         <li>
-                            <a href="/" class="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:bg-transparent" style="text-decoration: none; color: #b4c6fc">Inicio</a>
+                            <a href="/" class="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:bg-transparent" style="text-decoration: none">Inicio</a>
                         </li>
                         <!--Dropdown-->
                         <li>
@@ -94,10 +94,10 @@
                             </div>
                         </li>
                         <li>
-                            <a href="{% url 'repositorio' %}" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700" style="text-decoration: none;">Repositorio</a>
+                            <a href="{% url 'repositorio' %}" class="block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-white lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700" style="text-decoration: none;">Repositorio</a>
                         </li>
                         <li>
-                            <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700" style="text-decoration: none;">Contacto</a>
+                            <a href="https://generoenciencia.ufro.cl/contacto" class="block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-white lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700" style="text-decoration: none;">Contacto</a>
                         </li>
                     </ul>
                 </div>
@@ -195,6 +195,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+
 <script>
     var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
@@ -238,6 +240,18 @@
         // Actualiza el ícono
         toggleThemeIcon();
     });
+</script>
+
+<script>
+    window.onSpotifyIframeApiReady = (IFrameAPI) => {
+        const element = document.getElementById('embed-iframe');
+        const options = {
+            uri: 'spotify:episode:7makk4oTQel546B0PZlDM5'
+          };
+        const callback = (EmbedController) => {};
+        IFrameAPI.createController(element, options, callback);
+      };
+      
 </script>
 
 </body>

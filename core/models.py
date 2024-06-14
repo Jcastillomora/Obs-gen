@@ -51,3 +51,13 @@ class Academicosdap_acreditados(models.Model):
     total_mujeres = models.IntegerField()
     total_hombres = models.IntegerField()
     programa_postgrado = models.CharField(max_length=200)
+
+class Academicosdap_tipos(models.Model):
+    tipo_programa = models.CharField(max_length=200)
+    sexo = models.CharField(max_length=200)
+    colaborador = models.IntegerField()
+    claustro = models.IntegerField()
+    nucleo = models.IntegerField()
+    permanente = models.IntegerField()
+    visitante = models.IntegerField()
+

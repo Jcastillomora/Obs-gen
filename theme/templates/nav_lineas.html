@@ -1,3 +1,4 @@
+{% load static %}
 <!--Navbar Lineas Acción-->
 <nav class="bg-base-400 dark:bg-indigo-950 dark:text-white" uk-navbar style="font-size: 24px!important">
     <div class="uk-navbar-center">
@@ -7,7 +8,7 @@
         <ul class="uk-navbar-nav uk-visible@m text-zinc-950 dark:text-white font-semibold">
             <li class="uk-navbar-divider" style="border-right: 2px solid; margin-top: 20px; margin-bottom: 20px;"></li>
             <li>
-                <a href="{% url 'lineas_accion_1' %}" style="text-transform: none;">Acciones con Perspectiva de Género</a>
+                <a href="{% url 'lineas_accion_1' %}" class="text-zinc-950" style="text-transform: none;">Acciones con Perspectiva de Género</a>
             </li>
             <li class="uk-navbar-divider" style="border-right: 2px solid; margin-top: 20px; margin-bottom: 20px;"></li>
             <li>
@@ -21,7 +22,7 @@
             <li>
                 <a href="{% url 'lineas_accion_4' %}" style="text-transform: none">Capital Humano</a>
             </li>
-            <li class="uk-navbar-divider" style="border-right: 2px solid #dfdfdf; margin-top: 20px; margin-bottom: 20px;"></li>
+            <li class="uk-navbar-divider" style="border-right: 2px solid; margin-top: 20px; margin-bottom: 20px;"></li>
         </ul>
     </div>
 </nav>

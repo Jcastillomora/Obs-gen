@@ -1,8 +1,8 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from .models import AcademicosDAP, PIDitt, LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT, FONDEF_categorias, FONDEF_financiamiento, Academicosdap_acreditados
+from .models import AcademicosDAP, PIDitt, LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT, FONDEF_categorias, FONDEF_financiamiento, Academicosdap_acreditados, Academicosdap_tipos
 
-from .resource import AcademicosDAPResource, PIDittResource, LiderazgoFemeninoResource, LiderazgoPublicacionesResource, ProyectosITTResource, FONDEF_categoriasResource, FONDEF_financiamientoResource, Academicosdap_acreditadosResource
+from .resource import AcademicosDAPResource, PIDittResource, LiderazgoFemeninoResource, LiderazgoPublicacionesResource, ProyectosITTResource, FONDEF_categoriasResource, FONDEF_financiamientoResource, Academicosdap_acreditadosResource, Academicosdap_tiposResource
 
 # Register your models here.
 class AcademicosDAPAdmin(ImportExportModelAdmin, admin.ModelAdmin):
@@ -37,6 +37,11 @@ class Academicosdap_acreditadosAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = Academicosdap_acreditadosResource
     list_display = ('año', 'total_mujeres', 'total_hombres', 'programa_postgrado')
 
+class Academicosdap_tiposAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = Academicosdap_tiposResource
+    list_display = ('tipo_programa', 'sexo', 'colaborador', 'claustro', 'nucleo', 'permanente', 'visitante')
+
+
 admin.site.register(AcademicosDAP, AcademicosDAPAdmin)
 admin.site.register(PIDitt, PIDittAdmin)
 admin.site.register(LiderazgoFemenino, LiderazgoFemeninoAdmin)
@@ -45,3 +50,5 @@ admin.site.register(ProyectosITT, ProyectosITTAdmin)
 admin.site.register(FONDEF_categorias, FONDEF_categoriasAdmin )
 admin.site.register(FONDEF_financiamiento, FONDEF_financiamientoAdmin)
 admin.site.register(Academicosdap_acreditados, Academicosdap_acreditadosAdmin)
+admin.site.register(Academicosdap_tipos, Academicosdap_tiposAdmin)
+admin.site.site_header = 'Observatorio Género y Ciencia'

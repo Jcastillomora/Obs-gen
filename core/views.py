@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models import LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT, FONDEF_categorias, FONDEF_financiamiento, Academicosdap_acreditados
+from core.models import LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT, FONDEF_categorias, FONDEF_financiamiento, Academicosdap_acreditados, Academicosdap_tipos
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from django.http import HttpResponse
@@ -450,7 +450,7 @@ def plot3(request):
         yaxis2=dict(showticklabels=False),
         # xaxis=dict(type='category'),
         autosize=True,
-        margin=dict(l=100, r=100, t=50, b=100, autoexpand=True),
+        margin=dict(l=100, r=100, t=80, b=100, autoexpand=True),
         legend=dict(font=dict(size=12)),
         hovermode='x',
     )
@@ -588,9 +588,68 @@ def plot4(request):
 
     html = fig.to_html(full_html=False, config=config)
 
+
+    tdap = Academicosdap_tipos.objects.all()
+
+    tipo_programa = list(tdap.values_list('tipo_programa', flat=True))
+    sexo = list(tdap.values_list('sexo', flat=True))
+    colaborador = list(tdap.values_list('colaborador', flat=True))
+    claustro = list(tdap.values_list('claustro', flat=True))
+    nucleo = list(tdap.values_list('nucleo', flat=True))
+    permanente = list(tdap.values_list('permanente', flat=True))
+    visitante = list(tdap.values_list('visitante', flat=True))
+
+    def filtrar_valores_cero(labels, values):
+        filtered_labels_values = [(label, value) for label, value in zip(labels, values) if value != 0]
+        if not filtered_labels_values:  # If all values are zero, handle this case
+            return [], []
+        filtered_labels, filtered_values = zip(*filtered_labels_values)
+        return list(filtered_labels), list(filtered_values)
+    
+
+    filtrado_colaborador, colaborador_filtrado = filtrar_valores_cero(tipo_programa, colaborador)
+    filtrado_claustro, claustro_filtrado = filtrar_valores_cero(tipo_programa, claustro)
+    filtrado_nucleo, nucleo_filtrado = filtrar_valores_cero(tipo_programa, nucleo)
+    filtrado_permanente, permanente_filtrado = filtrar_valores_cero(tipo_programa, permanente)
+    filtrado_visitante, visitante_filtrado = filtrar_valores_cero(tipo_programa, visitante)
+
+    # Crear gráficos de torta que muestre los tipos de academico por programas de postgrado y sexo
+
+    fig2 = make_subplots(rows=3, cols=2, specs=[[{'type':'domain'}, {'type':'domain'}],
+                                                  [{'type':'domain'}, {'type':'domain'}],
+                                                  [{'type':'domain'}, {'type':'domain'}]
+                                                  ],
+                            subplot_titles=('Colaborador', 'Claustro', 'Núcleo', 'Permanente', 'Visitante'))
+    
+    fig2.add_trace(go.Pie(labels=filtrado_colaborador, values=colaborador_filtrado, hovertemplate='%{label}:<br>%{percent}<extra></extra>',name='Magister Academico', textinfo='percent'), 1, 1)
+    fig2.add_trace(go.Pie(labels=filtrado_claustro, values=claustro_filtrado, hovertemplate='%{label}:<br>%{percent}<extra></extra>', name='Magister Profesional', textinfo='percent', hole=0.3), 1, 2)
+    fig2.add_trace(go.Pie(labels=filtrado_nucleo, values=nucleo_filtrado, hovertemplate='%{label}:<br>%{percent}<extra></extra>', name='Doctorado', textinfo='percent', hole=0.3), 2, 1)
+    fig2.add_trace(go.Pie(labels=filtrado_permanente, values=permanente_filtrado, hovertemplate='%{label}:<br>%{percent}<extra></extra>', name='Especialidades Medicas', textinfo='percent', hole=0.3), 2, 2)
+    fig2.add_trace(go.Pie(labels=filtrado_visitante, values=visitante_filtrado, hovertemplate='%{label}:<br>%{percent}<extra></extra>', name='Especialidades Odontologicas', textinfo='percent', hole=0.3), 3, 1)
+   
+
+    fig2.update_layout(
+        template='none',
+        font_family='Roboto',
+        font_size=12,
+        font_color='#4d4d4d',
+        autosize=True,
+        margin=dict(l=0, r=10, t=80, b=80),
+        height=800,
+        
+    )
+
+    fig2.update_traces(textfont=dict(size=12, color='#000', family='Roboto'),
+                       marker=dict(line=dict(color='#000000', width=1)) 
+                       )
+
+    html2 = fig2.to_html(full_html=False, config=config)
+
     context = {
         'chart': html,
         'chart_id': 'chart',
+        'chart2': html2,
+        'chart2_id': 'chart2'
     }
 
     return render(request, 'lineas_accion_4.html', context)
