@@ -23,6 +23,27 @@ def la4(request):
 def la1(request):
     return render(request, 'lineas_accion_1.html')
 
+def index(request):
+    datapoints = [
+        { "label": "Online Store",  "y": 27  },
+        { "label": "Offline Store", "y": 25  },        
+        { "label": "Discounted Sale",  "y": 30  },
+        { "label": "B2B Channel", "y": 8  },
+        { "label": "Others",  "y": 10  }
+    ]
+
+    magma_composition_data = [
+        {"label":"Oxygen","symbol":"O","y":46.6},
+        {"label":"Silicon","symbol":"Si","y":27.7},
+        {"label":"Aluminium","symbol":"Al","y":13.9},
+        {"label":"Iron","symbol":"Fe","y":5},
+        {"label":"Calcium","symbol":"Ca","y":3.6},
+        {"label":"Sodium","symbol":"Na","y":2.6},
+        {"label":"Magnesium","symbol":"Mg","y":2.1},
+        {"label":"Others","symbol":"Others","y":1.5}
+  ]
+    return render(request, 'index.html', { "datapoints" : datapoints, "magma_composition_data":magma_composition_data})                                          
+
 def plot2(request):
 
     def add_percentage_symbol(values):
@@ -654,8 +675,88 @@ def plot4(request):
 
     return render(request, 'lineas_accion_4.html', context)
 
+def preparar_datos_anidados(tdap, campo):
+    outer_data = {}
+    inner_data = []
 
+    for entry in tdap:
+        tipo = entry.tipo_programa
+        sexo = entry.sexo
+        valor = getattr(entry, campo)
 
-    
+        # Solo agregar datos que no sean 0
+        if valor != 0:
+            # Preparar los datos exteriores
+            if tipo not in outer_data:
+                outer_data[tipo] = 0
+            outer_data[tipo] += valor
 
+            # Preparar los datos interiores
+            inner_data.append({
+                'name': f'{tipo} ({sexo})',
+                'value': valor
+            })
+
+    outer_series = [{'name': key, 'value': value} for key, value in outer_data.items()]
+
+    return outer_series, inner_data
+
+def mostrar_grafico(request):
+    tdap = Academicosdap_tipos.objects.all()
+
+    data_colaborador, inner_colaborador = preparar_datos_anidados(tdap, 'colaborador')
+    data_claustro, inner_claustro = preparar_datos_anidados(tdap, 'claustro')
+    data_nucleo, inner_nucleo = preparar_datos_anidados(tdap, 'nucleo')
+    data_permanente, inner_permanente = preparar_datos_anidados(tdap, 'permanente')
+    data_visitante, inner_visitante = preparar_datos_anidados(tdap, 'visitante')
+
+    adap = Academicosdap_acreditados.objects.all()
+
+    programas = []
+    datos_mujeres = []
+    datos_hombres = []
+
+    for registro in adap:
+        programas.append(registro.programa_postgrado)
+        datos_mujeres.append(registro.total_mujeres)
+        datos_hombres.append(registro.total_hombres)
+
+    contexto = {
+        'data_colaborador': data_colaborador,
+        'inner_colaborador': inner_colaborador,
+        'data_claustro': data_claustro,
+        'inner_claustro': inner_claustro,
+        'data_nucleo': data_nucleo,
+        'inner_nucleo': inner_nucleo,
+        'data_permanente': data_permanente,
+        'inner_permanente': inner_permanente,
+        'data_visitante': data_visitante,
+        'inner_visitante': inner_visitante,
+        'programas': programas,
+        'datos_mujeres': datos_mujeres,
+        'datos_hombres': datos_hombres,
+    }
+    return render(request, 'lineas_accion_4.html', contexto)
+
+# def grafico_41(request):
+
+#     adap = Academicosdap_acreditados.objects.all()
+
+#     programas = []
+#     datos_mujeres = []
+#     datos_hombres = []
+
+#     for registro in adap:
+#         programas.append(registro.programa_postgrado)
+#         datos_mujeres.append(registro.total_mujeres)
+#         datos_hombres.append(registro.total_hombres)
+
+#     # Pasar los datos a la plantilla
+#     context = {
+#         'programas': programas,
+#         'datos_mujeres': datos_mujeres,
+#         'datos_hombres': datos_hombres,
+#     }
+
+#     return render(request, 'test.html', context)
 

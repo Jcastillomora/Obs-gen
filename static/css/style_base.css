@@ -38,8 +38,6 @@ em {
     }
 }
 
-
-
 .accordion-item .accordion-button:focus {
     outline: none; /* Elimina el contorno de enfoque */
     box-shadow: none; /* Elimina la sombra */
@@ -92,3 +90,4 @@ footer li a {
     margin: 0 5px !important;  /* Espaciado horizontal entre los botones */
     display: inline-block !important;  /* Asegura que los botones se muestren en línea */
 }
+

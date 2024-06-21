@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',    
     'import_export',
- 
+    
     'core',
 ]
 
@@ -143,3 +143,21 @@ NPM_BIN_PATH = 'npm.cmd'
 TAILWIND_CSS_PATH = 'css/dist/styles.css'
 
 TAILWIND_DEV_SERVER = False
+
+# Ciberseguridad
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_SSL_REDIRECT = True
+# X_FRAME_OPTIONS = 'DENY'
+# SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_REF = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_HTTPONLY = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_SSL_REDIRECT = True
+

@@ -7,7 +7,7 @@
     <br>
     <hr style="border-top: 1px solid #000; width: 50%">
     <br>
-    <p style="color: #005fab; font-weight: 300" class="responsive-text"><h1 class="animate-pulse mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Línea<br>de Acción 4</span></h1></p>
+    <p style="color: #005fab; font-weight: 300" class="responsive-text"><h1 class="animate-pulse mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500">Línea<br>de Acción 4</span></h1></p>
     <br>
     <hr style="border-top: 1px solid #000; width: 50%">
     <br>
@@ -22,43 +22,231 @@
     <hr style="border-top: 1px solid #000"> 
     <br>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8">
-            <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Porcentaje de Académicas/os acreditados en el año 2023, según total programas de Postgrado</p>
-            <br>
-            {{ chart|safe }}
-            <p style="text-align: center" class="text-xs font-thin text-zinc-950 lg:text-xl dark:text-white"><em>Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera.</em></p>
-            </div>
-        </div>  
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Porcentaje de Académicas/os acreditados en el año 2023, según total programas de Postgrado</p>
+        <br>
+        {% comment %} {{ chart|safe }} {% endcomment %}
+        <div class="grafico-container">
+            <div id="grafico-barras" class="h-96" style="width: 600px; height: 600px; margin: 0 auto;"></div>
+        </div>
+        <p style="text-align: center" class="text-xs font-thin text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera</p>
     </div>
     <br>
     <hr style="border-top: 1px solid #000;">
     <br>
     <div class="container-fluid">
+        <p class="text-lg font-bold text-center text-zinc-950 lg:text-xl dark:text-white">Porcentaje de tipos de académicos acreditados 2023, según total programas de postgrado y sexo</p>
+        <br>
+        <br>
         <div class="row">
-            <div class="col-md-8">
-            <p class="text-lg font-bold text-center text-zinc-950 lg:text-xl dark:text-white">Porcentaje de tipos de académicos acreditados 2023, según total programas de postgrado</p>
-            <br>
-            {{ chart2|safe }}
-            <p class="text-xs text-center font-thin text-zinc-950 lg:text-xl dark:text-white"><em>Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera.</em></p>
+            {% comment %} {{ chart2|safe }} {% endcomment %}
+            <div class="col">
+                <div id="chart-colaborador" class="chart" style="width: 400px; height: 400px;"></div>
             </div>
-        </div>  
-    </div>
-    {% comment %} <p class="responsive-text" style="text-align: center"><strong>Evolución del porcentaje en el área de investigación del monto financiamiento FONDEF, según sexo y año (2022-2023)</strong></p>
-    <div class="container-fluid">
+            <div class="col">
+                <div id="chart-claustro" class="chart" style="width: 400px; height: 400px;"></div>
+            </div>
+            <div class="col">
+                <div id="chart-nucleo" class="chart" style="width: 400px; height: 400px;"></div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-md-8">
-            {{ chart|safe }}
+            <div class="col-6">
+                <div id="chart-permanente" class="chart" style="width: 400px; height: 400px;"></div>
             </div>
-        </div>  
+            <div class="col-6">
+                <div id="chart-visitante" class="chart" style="width: 400px; height: 400px;"></div>
+            </div>
+        </div>
+        <p class="text-xs text-center font-thin text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera.</p> 
     </div>
-    <p style="text-align: center" class="responsive-text"><em>
-    Fuente: Elaboración propia, a partir de las bases de datos de ANID 
-    Proyectos (bdh_proyectos_2003_2022 y bdh_proyectos_2003_2023)
-    </em></p> {% endcomment %}
     <br>
     <br>
+
 </div>
+
+
+<script type="text/javascript">
+    // Inicializar el gráfico de Barras Apiladas con ECharts
+    var chartBar = echarts.init(document.getElementById('grafico-barras'));
+
+    // Datos para el gráfico de Barras Apiladas (suponiendo que los datos ya están pasados desde Django)
+    var programasBar = {{ programas|safe }};
+    var datos_mujeresBar = {{ datos_mujeres|safe }};
+    var datos_hombresBar = {{ datos_hombres|safe }};
+
+    // Configuración del gráfico de Barras Apiladas
+    var optionBar = {
+       
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            },
+            formatter: function(params) {
+                var tooltipHtml = '<div style="text-align: left;">' + params[0].axisValueLabel + '</div>';
+                params.forEach(function(item) {
+                    tooltipHtml += '<div>' + item.seriesName + ': ' + item.data + ' %</div>';
+                });
+                return tooltipHtml;
+            }
+        },
+        legend: {
+            data: ['Mujeres', 'Hombres'],
+            top: '5%'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            data: programasBar,
+            axisLabel: {
+                interval: 0, // Mostrar todas las etiquetas
+                rotate: 45, // Rotar las etiquetas para que no se superpongan
+                formatter: function(value) {
+                    return value.split(' ').join('\n'); // Ajuste opcional para etiquetas largas
+                }
+            }
+        },
+        yAxis: {
+            type: 'value',
+        },
+        series: [
+            {
+                name: 'Mujeres',
+                type: 'bar',
+                stack: 'total',
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '{c}%',  // Formato para mostrar el valor
+                },
+                itemStyle: {
+                    color: '#a280f6'  // Color para las barras de mujeres
+                },
+                data: datos_mujeresBar
+            },
+            {
+                name: 'Hombres',
+                type: 'bar',
+                stack: 'total',
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '{c}%',  // Formato para mostrar el valor
+                },
+                itemStyle: {
+                    color: '#ea7742'  // Color para las barras de hombres
+                },
+                data: datos_hombresBar
+            }
+        ]
+    };
+
+    // Aplicar las opciones al gráfico de Barras Apiladas
+    chartBar.setOption(optionBar);
+
+    window.addEventListener('resize', function() {
+        chartBar.resize();
+    });
+
+    // Función para inicializar gráfico de Torta con ECharts
+    function initChart(id, title, outerData, innerData) {
+        var chartDom = document.getElementById(id);
+        var myChart = echarts.init(chartDom);
+        var option = {
+            title: {
+                text: title,
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            series: [
+                {
+                    name: title,
+                    type: 'pie',
+                    radius: ['0%', '30%'],
+                    label: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position: 'outer',
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: '14',
+                        }
+                    },
+                    labelLine: {
+                        show: true,
+                        length: 10,
+                        length2: 10,
+                        smooth: true
+                    },
+                    data: outerData
+                },
+                {
+                    name: title + ' por Sexo',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    label: {
+                        show: true,
+                        formatter: '{d}%',
+                        position: 'inside'
+                    },
+                    data: innerData
+                }
+            ]
+        };
+
+
+        var colorMujeres = '#a280f6';
+        var colorHombres = '#ea7742';
+            
+            option.series.forEach(function (series) {
+                series.data.forEach(function (item) {
+                    if (item.name.includes('mujeres')) {
+                        item.itemStyle = { color: colorMujeres };
+                    } else if (item.name.includes('hombres')) {
+                        item.itemStyle = { color: colorHombres };
+                    }
+                });
+            });        
+
+
+        myChart.setOption(option);
+
+        window.addEventListener('resize', function() {
+            myChart.resize();
+        });
+    }
+
+    // Datos para los gráficos de Torta (suponiendo que los datos ya están pasados desde Django)
+    var dataColaborador = {{ data_colaborador|safe }};
+    var innerColaborador = {{ inner_colaborador|safe }};
+    var dataClaustro = {{ data_claustro|safe }};
+    var innerClaustro = {{ inner_claustro|safe }};
+    var dataNucleo = {{ data_nucleo|safe }};
+    var innerNucleo = {{ inner_nucleo|safe }};
+    var dataPermanente = {{ data_permanente|safe }};
+    var innerPermanente = {{ inner_permanente|safe }};
+    var dataVisitante = {{ data_visitante|safe }};
+    var innerVisitante = {{ inner_visitante|safe }};
+
+    // Inicializar los gráficos de Torta
+    initChart('chart-colaborador', 'Colaboradores', dataColaborador, innerColaborador);
+    initChart('chart-claustro', 'Claustro', dataClaustro, innerClaustro);
+    initChart('chart-nucleo', 'Núcleo', dataNucleo, innerNucleo);
+    initChart('chart-permanente', 'Permanente', dataPermanente, innerPermanente);
+    initChart('chart-visitante', 'Visitante', dataVisitante, innerVisitante);
+</script>
+
+
 
 {% include 'nav_lineas.html' %}
 {% endblock content %}

@@ -1,13 +1,24 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block content %}
 {% include 'banner_lineas.html' %}
+<style>
+    .grafico-container {
+        width: 100%;
+        max-width: 800px; /* Ancho máximo para mantener la legibilidad */
+        height: 400px;
+        margin: 0 auto;
+    }
+
+
+</style>
+
+
 <div class="container-lg dark:bg-indigo-950 dark:text-white" style="font-family: 'Roboto', sans-serif;">
     <br>
     <br>
     <hr style="border-top: 1px solid; width: 50%;" class="dark:bg-white">
     <br>
-    <p style="font-weight: 300" class="responsive-text"><h1 class="animate-pulse mb-4 text-3xl font-extrabold text-zinc-950 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Línea <br>de Acción 1</span></h1></p>
+    <p style="font-weight: 300" class="responsive-text"><h1 class="animate-pulse mb-4 text-3xl font-extrabold text-zinc-950 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500">Línea <br>de Acción 1</span></h1></p>
     <br>
     <hr style="border-top: 1px solid; width: 50%;" class="dark:bg-white">
     <br>
@@ -17,12 +28,29 @@
         en I+D+i+e tales como, la presentación de información empírica desglosada con variables de género, 
         conclusiones referentes a la utilidad de los resultados por género, escritura con lenguaje sensible 
         al género, estrategia de comunicación que evite estereotipos y actividades formativas y de capacitación 
-        con perspectiva de género.   
+        con perspectiva de género.<br>   
+
+        <br>Próximamente!
     </p>
     <br>
     <hr style="border-top: 1px solid #000"> 
     <br>
     <br>
 </div>
+
+{% comment %} <div class="container-lg">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="chart-colaborador" class="chart" style="width: 400px; height: 400px;"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="chart-claustro" class="chart" style="width: 400px; height: 400px;"></div>
+        </div>
+    </div>
+    <div id="chart-nucleo" class="chart" style="width: 400px; height: 400px;"></div>
+    <div id="chart-permanente" class="chart" style="width: 400px; height: 400px;"></div>
+    <div id="chart-visitante" class="chart" style="width: 400px; height: 400px;"></div>
+</div> {% endcomment %}
+
 {% include 'nav_lineas.html' %}
 {% endblock content %}

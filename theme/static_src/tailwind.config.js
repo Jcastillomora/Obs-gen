@@ -42,6 +42,7 @@ module.exports ={
          */
         '../../**/*.py',
         './node_modules/flowbite/**/*.js',
+        './src/**/*.{js,jsx,ts,tsx,html}',
     ],
     theme: {
         extend: {
@@ -108,8 +109,11 @@ module.exports ={
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
         require('tailwindcss-gradients'),
-        require('flowbite/plugin'),
-        require('tailwindcss-animate'),
+        require('flowbite/plugin')({
+            charts: true,
+
+        }),
+        require('tailwindcss-animated'),
     ],
 }
 
