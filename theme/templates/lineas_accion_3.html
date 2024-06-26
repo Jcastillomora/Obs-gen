@@ -2,53 +2,349 @@
 {% load static %}
 {% block content %}
 {% include 'banner_lineas.html' %}
+{% include 'navbar.html' %}
 <div class="container-lg dark:bg-indigo-950 dark:text-white" style="font-family: 'Roboto', sans-serif;">
     <br>
     <br>
     <hr style="border-top: 1px solid; width: 50%;" class="dark:text-white">
     <br>
-    <h1 class="animate-pulse mb-4 text-3xl font-extrabold text-zinc-950 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500">Línea<br>de Acción 3</span></h1>
+    <p class="animate-pulse mb-4 text-3xl md:text-5xl lg:text-6xl font-bold text-blue-500 dark:text-white">Línea<br>de Acción 3</p>
     <br>
     <hr style="border-top: 1px solid; width: 50%;" class="dark:bg-white">
     <br>
     <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: left">Financiamiento y Patrocinio I+D+i+e<br></p>
     <br>
-    <p class="text-lg font-thin text-zinc-950 lg:text-xl dark:text-white">
+    <p class="text-lg font-normal text-zinc-950 lg:text-xl min-[320px]:text-sm dark:text-white">
         Los indicadores correspondientes a este ítem, hacen referencia a los montos en el 
         financiamiento y patrocinio adjudicados en el área de I+D+i+e.    
     </p>
     <br>
-    <hr style="border-top: 1px solid;" class="dark:bg-white">     
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-            <br>
-            <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white text-center">Evolución del porcentaje en el área de investigación del monto financiamiento FONDEF, según sexo y año (2022-2023)</p>
-            <br>
-            {{ chart|safe }}
-            <p style="text-align: center" class="text-lg font-thin text-zinc-950 lg:text-xl dark:text-white text-center">
-                Fuente: Elaboración propia, a partir de las bases de datos de ANID 
-                Proyectos (bdh_proyectos_2003_2022 y bdh_proyectos_2003_2023)
-            </p>
-            </div>
+    <hr style="border-top: 1px solid;" class="dark:bg-white">
+    <br>
+    <br>
+    
+    <div class="container-fluid">
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del porcentaje en el área de investigación del monto financiamiento FONDEF, según sexo y año (2022-2023)</p>
+        <br>
+        <div class="grafico-container">
+            <select style="margin: 0 auto" id="distributionYearSelector" onchange="updateDistributionChart()">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+            </select>
+            <div id="distributionChart" class="h-96" style="width: 600px; height: 400px; margin: 0 auto;"></div>
         </div>
         <br>
-        <hr style="border-top: 1px solid #000">
-        <div class="row">
-            <div class="col-md-8">
-            <br>
-            <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del Monto Total de Financiamiento Fondef ($), según sexo y año (2020-2023).</p>
-            <br>
-            {{ chart2|safe }}
-            <p style="text-align: center" class="text-xs font-thin text-zinc-950 lg:text-xl dark:text-white">
-                Fuente: Elaboración propia, a partir de la base de datos ANID Proyectos 
-                (bdh_proyectos_2003_2022 y bdh_proyectos_2023_2032).
-            </p>
-            </div>
-        </div>    
+        <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de las bases de datos de ANID 
+            Proyectos (bdh_proyectos_2003_2022 y bdh_proyectos_2003_2023)</p>
     </div>
     <br>
+    <hr>
     <br>
+    <div class="container-fluid">
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del Monto Total de Financiamiento Fondef ($), según sexo y año (2020-2023).</p>
+        <br>
+        <div class="grafico-container">
+            <select style="margin: 0 auto" id="financingYearSelector" onchange="updateFinancingChart()">
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+            </select>
+            <div id="financingChart" class="h-96" style="width: 600px; height: 400px; margin: 0 auto;"></div>
+        </div>
+        <br>
+        <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos ANID Proyectos 
+            (bdh_proyectos_2003_2022 y bdh_proyectos_2023_2032).</p>
+    </div>
 </div>
+<br>
+<script type="text/javascript">
+    // Variables para Distribución
+    var años = {{ años|safe }};
+    var categorias_2022 = {{ categorias_2022|safe }};
+    var total_mujeres_2022 = {{ total_mujeres_2022|safe }};
+    var total_hombres_2022 = {{ total_hombres_2022|safe }};
+    var categorias_2023 = {{ categorias_2023|safe }};
+    var total_mujeres_2023 = {{ total_mujeres_2023|safe }};
+    var total_hombres_2023 = {{ total_hombres_2023|safe }};
+
+    // Variables para Financiamiento
+    var años_ff = {{ años_ff|safe }};
+    var financiamiento_mujeres_2020 = {{ financiamiento_mujeres_2020|safe }};
+    var financiamiento_hombres_2020 = {{ financiamiento_hombres_2020|safe }};
+    var financiamiento_total_2020 = {{ financiamiento_total_2020|safe }};
+    var financiamiento_mujeres_2021 = {{ financiamiento_mujeres_2021|safe }};
+    var financiamiento_hombres_2021 = {{ financiamiento_hombres_2021|safe }};
+    var financiamiento_total_2021 = {{ financiamiento_total_2021|safe }};
+    var financiamiento_mujeres_2022 = {{ financiamiento_mujeres_2022|safe }};
+    var financiamiento_hombres_2022 = {{ financiamiento_hombres_2022|safe }};
+    var financiamiento_total_2022 = {{ financiamiento_total_2022|safe }};
+    var financiamiento_mujeres_2023 = {{ financiamiento_mujeres_2023|safe }};
+    var financiamiento_hombres_2023 = {{ financiamiento_hombres_2023|safe }};
+    var financiamiento_total_2023 = {{ financiamiento_total_2023|safe }};
+
+    // Inicializar ECharts para los gráficos
+    var distributionChart = echarts.init(document.getElementById('distributionChart'));
+    var financingChart = echarts.init(document.getElementById('financingChart'));
+
+    // Opciones para gráfico de Distribución
+    var distributionOption = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            },
+            formatter: function(params) {
+              var tooltipHtml = '<div style="text-align: left;">' + params[0].axisValueLabel + '</div>';
+              params.forEach(function(item) {
+                  tooltipHtml += '<div>' + item.seriesName + ': ' + item.data + ' %</div>';
+              });
+              return tooltipHtml;
+            }
+        },
+        legend: {
+            data: ['Mujeres', 'Hombres']
+        },
+        xAxis: {
+            type: 'category',
+            data: [],
+            axisLabel: {
+                interval: 0, // Mostrar todas las etiquetas
+                rotate: 0, // Rotar las etiquetas para que no se superpongan
+                formatter: function(value) {
+                    return value.split(' ').join('\n'); // Ajuste opcional para etiquetas largas
+                }
+            }
+        },
+        yAxis: {
+            type: 'value',
+            name: '%',
+            nameTextStyle: {
+                fontSize: 18  // Tamaño de la fuente del título del eje Y
+            }
+        },
+        series: [
+            {
+                name: 'Mujeres',
+                type: 'bar',
+                stack: 'total',
+                data: [],
+                itemStyle: {
+                    color: '#a280f6'   // Color para las barras de mujeres
+                },
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '{c}%',  // Formato para mostrar el valor
+                }
+            },
+            {
+                name: 'Hombres',
+                type: 'bar',
+                stack: 'total',
+                data: [],
+                itemStyle: {
+                    color: '#ea7742'  // Color para las barras de hombres
+                },
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '{c}%',  // Formato para mostrar el valor
+                }
+            }
+        ]
+    };
+
+    // Opciones para gráfico de Financiamiento
+    var financingOption = {
+       legend: {
+            data: ['Mujeres', 'Hombres', 'Total']
+        },
+        xAxis: {
+            type: 'category',
+            data: [],
+            axisLabel: {
+                interval: 0, // Mostrar todas las etiquetas
+                rotate: 0, // Rotar las etiquetas para que no se superpongan
+                formatter: function(value) {
+                    return value.split(' ').join('\n'); // Ajuste opcional para etiquetas largas
+                }
+            }
+        },
+        yAxis: {
+            type: 'value',
+            name: '$ M',
+            nameTextStyle: {
+                fontSize: 18  // Tamaño de la fuente del título del eje Y
+            }
+        },
+        series: [
+            {
+                name: 'Mujeres',
+                type: 'bar',
+                data: ['Mujeres', 'Hombres', 'Total'],
+                itemStyle: {
+                    color: '#a280f6'   // Color para las barras de mujeres
+                },
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '${c} M',  // Formato para mostrar el valor
+                }
+            },
+            {
+                name: 'Hombres',
+                type: 'bar',
+                data: [],
+                itemStyle: {
+                    color: '#ea7742'  // Color para las barras de hombres
+                  },
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '${c} M',  // Formato para mostrar el valor
+                }
+            },
+            {
+                name: 'Total',
+                type: 'bar',
+                data: [],
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '${c} M',  // Formato para mostrar el valor
+                }
+            }
+        ]
+    };
+
+    // Asignar opciones a los gráficos
+    distributionChart.setOption(distributionOption);
+    financingChart.setOption(financingOption);
+
+    // Función para actualizar gráfico de Distribución
+    function updateDistributionChart() {
+        var selectedYear = document.getElementById("distributionYearSelector").value;
+
+        // Lógica para actualizar datos del gráfico de distribución
+        if (selectedYear === '2022') {
+            distributionChart.setOption({
+                xAxis: {
+                    data: categorias_2022
+                },
+                series: [
+                    {
+                        name: 'Mujeres',
+                        data: total_mujeres_2022
+                    },
+                    {
+                        name: 'Hombres',
+                        data: total_hombres_2022
+                    }
+                ]
+            });
+        } else if (selectedYear === '2023') {
+            distributionChart.setOption({
+                xAxis: {
+                    data: categorias_2023
+                },
+                series: [
+                    {
+                        name: 'Mujeres',
+                        data: total_mujeres_2023,
+                    },
+                    {
+                        name: 'Hombres',
+                        data: total_hombres_2023
+                    }
+                ]
+            });
+        }
+    }
+
+    // Función para actualizar gráfico de Financiamiento
+    function updateFinancingChart() {
+        var selectedYear = document.getElementById("financingYearSelector").value;
+
+        // Lógica para actualizar datos del gráfico de financiamiento
+        if (selectedYear === '2020') {
+            financingChart.setOption({
+                series: [
+                    {
+                        name: 'Mujeres',
+                        data: financiamiento_mujeres_2020
+                    },
+                    {
+                        name: 'Hombres',
+                        data: financiamiento_hombres_2020
+                    },
+                    {
+                        name: 'Total',
+                        data: financiamiento_total_2020
+                    }
+                ]
+            });
+        } else if (selectedYear === '2021') {
+            financingChart.setOption({
+                series: [
+                    {
+                        name: 'Mujeres',
+                        data: financiamiento_mujeres_2021
+                    },
+                    {
+                        name: 'Hombres',
+                        data: financiamiento_hombres_2021
+                    },
+                    {
+                        name: 'Total',
+                        data: financiamiento_total_2021
+                    }
+                ]
+            });
+        } else if (selectedYear === '2022') {
+            financingChart.setOption({
+                series: [
+                    {
+                        name: 'Mujeres',
+                        data: financiamiento_mujeres_2022
+                    },
+                    {
+                        name: 'Hombres',
+                        data: financiamiento_hombres_2022
+                    },
+                    {
+                        name: 'Total',
+                        data: financiamiento_total_2022
+                    }
+                ]
+            });
+        } else if (selectedYear === '2023') {
+            financingChart.setOption({
+                series: [
+                    {
+                        name: 'Mujeres',
+                        data: financiamiento_mujeres_2023
+                    },
+                    {
+                        name: 'Hombres',
+                        data: financiamiento_hombres_2023
+                    },
+                    {
+                        name: 'Total',
+                        data: financiamiento_total_2023
+                    }
+                ]
+            });
+        }
+    }
+
+    // Inicialización de los gráficos con el primer año disponible
+    document.getElementById("distributionYearSelector").value = años[0];
+    document.getElementById("financingYearSelector").value = años_ff[0];
+    updateDistributionChart();
+    updateFinancingChart();
+</script>
+
 {% include 'nav_lineas.html' %}
 {% endblock content %}
+

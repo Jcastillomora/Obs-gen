@@ -2,18 +2,19 @@
 {% load static %}
 {% block content %}
 {% include 'banner_lineas.html' %}
+{% include 'navbar.html' %}
 <div class="container-lg dark:bg-indigo-950" style="font-family: 'Roboto', sans-serif; color: #4d4d4d">
     <br>
     <br>
     <hr style="border-top: 1px solid #000; width: 50%">
     <br>
-    <p style="color: #005fab; font-weight: 300" class="responsive-text"><h1 class="animate-pulse mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500">Línea<br>de Acción 4</span></h1></p>
+    <p class="animate-pulse mb-4 text-3xl md:text-5xl lg:text-6xl font-bold text-blue-500 dark:text-white">Línea<br>de Acción 4</p>
     <br>
     <hr style="border-top: 1px solid #000; width: 50%">
     <br>
     <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white">Capital Humano<br></p>
     <br>
-    <p class="text-lg font-thin text-zinc-950 lg:text-xl dark:text-white">
+    <p class="text-lg font-normal text-zinc-950 lg:text-xl min-[320px]:text-sms dark:text-white">
         Los indicadores correspondientes a este ítem, guardan relación con la Jornada Completa 
         Equivalente (JCE), la diferencia en el salario promedio anual entre hombres y mujeres 
         y datos provenientes de la Dirección Académica de Postgrado (DAP).
@@ -39,21 +40,21 @@
         <br>
         <div class="row">
             {% comment %} {{ chart2|safe }} {% endcomment %}
-            <div class="col">
+            <div class="col p-3">
                 <div id="chart-colaborador" class="chart" style="width: 400px; height: 400px;"></div>
             </div>
-            <div class="col">
+            <div class="col p-3">
                 <div id="chart-claustro" class="chart" style="width: 400px; height: 400px;"></div>
             </div>
-            <div class="col">
+            <div class="col p-3">
                 <div id="chart-nucleo" class="chart" style="width: 400px; height: 400px;"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col p-3">
                 <div id="chart-permanente" class="chart" style="width: 400px; height: 400px;"></div>
             </div>
-            <div class="col-6">
+            <div class="col p-3">
                 <div id="chart-visitante" class="chart" style="width: 400px; height: 400px;"></div>
             </div>
         </div>
@@ -61,7 +62,6 @@
     </div>
     <br>
     <br>
-
 </div>
 
 
@@ -160,11 +160,23 @@
         var option = {
             title: {
                 text: title,
-                left: 'center'
+                left: 'center',
             },
             tooltip: {
                 trigger: 'item',
                 formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            legend: {
+                orient: 'horizontal',
+                bottom: 0,
+                data: outerData.map(function(item) {
+                    return item.name;
+                }),
+                padding: [10, 0, 0, 0]
+            },
+            grid: {
+                top: 100, // Añade un margen superior al área del gráfico
+                bottom: 50 // Añade un margen inferior al área del gráfico
             },
             series: [
                 {
@@ -193,7 +205,7 @@
                 {
                     name: title + ' por Sexo',
                     type: 'pie',
-                    radius: ['40%', '70%'],
+                    radius: ['40%', '60%'],
                     label: {
                         show: true,
                         formatter: '{d}%',
@@ -245,8 +257,6 @@
     initChart('chart-permanente', 'Permanente', dataPermanente, innerPermanente);
     initChart('chart-visitante', 'Visitante', dataVisitante, innerVisitante);
 </script>
-
-
 
 {% include 'nav_lineas.html' %}
 {% endblock content %}

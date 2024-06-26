@@ -1,49 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-{% comment %} <div class="container">
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-6">
-            <hr>            
-            <div class="accordion accordion-flush" id="accordionPanelsStayOpen">
-                <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    <p class="responsive-text">Documentos</p>
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                    <div class="accordion-body">
-                    <span uk-icon="icon: chevron-right; ratio: 1.5"></span><p class="responsive-text">Descarga nuestro manual Aquí (PDF)</p>
-                    </div>
-                </div>
-                </div>
-                <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                    <p class="responsive-text" style="color: #005fab">Reportes</p>
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
-                    <div class="accordion-body">
-                    <span uk-icon="icon: chevron-right; ratio: 1.5"></span><p class="responsive-text">Descarga nuestro reporte Aquí (PDF)</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-        <hr>
-        </div>
-        <div class="col-6"></div>
-        
-    </div>
-    <br>
-    <br>
-</div> {% endcomment %}
-
-{% include 'banner_repositorio.html' %}  
+{% include 'banner_repositorio.html' %} 
+{% include 'navbar.html' %} 
 <!--acordeón repositorio-->
 <div class="container-lg px-4 dark:bg-indigo-950">
     <div id="accordion-flush" data-accordion="collapse" data-active-classes="text-gray-900 dark:text-white" data-inactive-classes="text-gray-500">
