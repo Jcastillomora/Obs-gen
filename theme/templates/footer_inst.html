@@ -1,0 +1,109 @@
+{% load static %}
+
+<footer style="background-color: #005fab; font-family: 'Gandhi Sans', sans-serif; font-size: 1,2vw; font-weight: 400;">
+    <div class="mx-auto w-full max-w-screen-xl p-10">
+        <div class="grid grid-cols-1 sm:flex sm:space-x-8 px-2 lg:py-8">
+            <div class="flex-1 mb-6 sm:mb-0 py-5 px-6">
+                <img class="pb-4" src="https://vrip.ufro.cl/wp-content/uploads/2022/03/newRecurso-1diufro_.svg">
+                <!--Agregar un espacio entre la img y el texto en clases de tailwind-->
+                <ul class="text-white font-medium">
+                    <li>
+                        <p>
+                        Universidad de La Frontera<br>
+                        Avenida Francisco Salazar 01145<br>  
+                        Temuco, Chile<br>
+                        Casilla 54-D<br></p>
+                        <br>
+                        <div class="flex space-x-2">
+                            {% comment %} <img src="https://vrip.ufro.cl/wp-content/uploads/2022/03/newRecurso-2postgrado_.png" width="22" height="22"/> {% endcomment %}
+                            <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.427 14.768 17.2 13.542a1.733 1.733 0 0 0-2.45 0l-.613.613a1.732 1.732 0 0 1-2.45 0l-1.838-1.84a1.735 1.735 0 0 1 0-2.452l.612-.613a1.735 1.735 0 0 0 0-2.452L9.237 5.572a1.6 1.6 0 0 0-2.45 0c-3.223 3.2-1.702 6.896 1.519 10.117 3.22 3.221 6.914 4.745 10.12 1.535a1.601 1.601 0 0 0 0-2.456Z"/>
+                            </svg>                             
+                            <p class="text-xs">Fono: (56)45 232 5000 FAX:(56)45 259 2822</p>
+                        </div>
+                        <br>
+                        <div class="flex space-x-3">
+                            <a href="https://www.flickr.com/photos/vripufro/">
+                                <img src="{% static 'img/flickr.png' %}" class="h-6 w-6">
+                            </a>
+                            <a href="https://www.linkedin.com/company/vrip-ufro/?viewAsMember=true">
+                                <img src="{% static 'img/linkedin.png' %}" class="h-6 w-6">
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC1r3rR0lF0198Sil7QCyk1g">
+                                <img src="{% static 'img/youtube.png' %}" class="h-6 w-6">
+                            </a>
+                            <a href="https://x.com/i/flow/login?redirect_after_login=%2Fvripufro">
+                                <img src="{% static 'img/x.png' %}" class="h-6 w-6">
+                            </a>
+                            <a href="https://www.instagram.com/vripufro/?hl=en">
+                                <img src="{% static 'img/instagram.png' %}" class="h-6 w-6">
+                            </a>
+                            <a href="https://www.facebook.com/vripufro/">
+                                <img src="{% static 'img/facebook.png' %}" class="h-6 w-6">
+                            </a>
+                        </div>
+                    </li>           
+                </ul>
+            </div>            
+            <!-- Separador vertical -->
+            <div class="hidden sm:block border-l-2 border-gray-300 h-auto px-4"></div>
+            
+            <div class="flex-1 mb-6 sm:mb-0 py-10">
+                <h2 class="mb-6 font-bold text-white dark:text-white">La Universidad</h2>
+                <ul class="text-white dark:text-gray-400 font-medium p-0">
+                    <li>
+                        <a href="https://www.ufro.cl/index.php/inicio/institucional/historia" class="uk-link-reset">> Historia Institucional</a>
+                    </li>
+                    <li>
+                        <a href="https://www.ufro.cl/index.php/inicio/institucional/acreditacion" class="uk-link-reset">> Acreditación Institucional</a>
+                    </li>
+                    <li>
+                        <a href="https://www.ufro.cl/index.php/postulantes" class="uk-link-reset">> Postulantes</a>
+                    </li>
+                    <li>
+                        <a href="https://www.ufro.cl/index.php/estudiantes" class="uk-link-reset">> Estudiantes</a>
+                    </li>
+                    <li>
+                        <a href="#" class="uk-link-reset">> Titulados</a>
+                    </li>
+                    <li>
+                        <a href="https://www.ufro.cl/index.php/funcionarios" class="uk-link-reset">> Funcionarios</a>
+                    </li>
+                </ul>
+            </div>            
+            <!-- Separador vertical -->
+            <div class="hidden sm:block border-l-2 border-gray-300 h-auto px-4"></div>
+            
+            <div class="flex-1 mb-6 sm:mb-0 py-10">
+                <h2 class="mb-6 font-bold text-white dark:text-white">Accesos Rápidos</h2>
+                <ul class="text-white dark:text-gray-400 font-medium p-0 list-none">
+                    <li style="text-decoration: none;">
+                        <a href="https://extranet.ufro.cl/concursos/" class="uk-link-reset">> Trabaja con Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="https://www.mercadopublico.cl/Portal/Modules/Site/Busquedas/BuscadorAvanzado.aspx?qs=1" class="uk-link-reset">> Nuestras Licitaciones</a>
+                    </li>
+                    <li>
+                        <a href="https://transparencia.ufro.cl/" class="uk-link-reset">> Transparencia Activa</a>
+                    </li>
+                    <li>
+                        <a href="https://www2.ufro.cl/transparencia/" class="uk-link-reset">> Solicitud de información ley de Transparencia</a>
+                    </li>
+                    <li>
+                        <a href="https://leylobby.ufro.cl/" class="uk-link-reset">> Ley de Lobby</a>
+                    </li>
+                    <li>
+                        <a href="https://www.ufro.cl/images/PROTOCOLO-DE-ACOSO-LABORAL-y-SEXUAL-UFRO-2020.pdf" class="uk-link-reset"> Protocolo Gestión de Denuncias de Maltrato y Acoso</a>
+                    </li>
+                    <li>
+                        <a href="https://pagoweb.ufro.cl/" class="uk-link-reset">> Portal de Pagos</a>
+                    </li>
+                    <li>
+                        <a href="https://certificados.ufro.cl/ValidaCertificado.php" class="uk-link-reset">> Verificador de Certificados</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+

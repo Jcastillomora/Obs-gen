@@ -3,18 +3,19 @@
 {% block content %}
 {% include 'banner_lineas.html' %}
 {% include 'navbar.html' %}
-<div class="container-lg dark:bg-indigo-950 dark:text-white" style="font-family: 'Roboto', sans-serif;">
+<div class="container-lg text-2xl lg:text-3xl" style="font-family: 'Roboto', sans-serif;">
     <br>
     <br>
-    <hr style="border-top: 1px solid; width: 50%;" class="dark:text-white">
+    <hr style="border-top: 1px solid; width: 50%;">
     <br>
-    <p class="animate-pulse mb-4 text-3xl md:text-5xl lg:text-6xl font-bold text-blue-500 dark:text-white">Línea<br>de Acción 3</p>
+    <p class="animate-pulse mb-4 text-3xl md:text-5xl lg:text-6xl font-bold" style="color: #005fab;">Línea<br>de Acción 3</p>
     <br>
-    <hr style="border-top: 1px solid; width: 50%;" class="dark:bg-white">
+    <hr style="border-top: 1px solid; width: 50%;">
     <br>
-    <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: left">Financiamiento y Patrocinio I+D+i+e<br></p>
     <br>
-    <p class="text-lg font-normal text-zinc-950 lg:text-xl min-[320px]:text-sm dark:text-white">
+    <p class="animate-fade-right text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: left">Financiamiento y Patrocinio I+D+i+e<br></p>
+    <br>
+    <p class="animate-fade-right text-lg font-normal text-zinc-950 lg:text-xl min-[320px]:text-sm w-9/12">
         Los indicadores correspondientes a este ítem, hacen referencia a los montos en el 
         financiamiento y patrocinio adjudicados en el área de I+D+i+e.    
     </p>
@@ -26,12 +27,16 @@
     <div class="container-fluid">
         <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del porcentaje en el área de investigación del monto financiamiento FONDEF, según sexo y año (2022-2023)</p>
         <br>
-        <div class="grafico-container">
-            <select style="margin: 0 auto" id="distributionYearSelector" onchange="updateDistributionChart()">
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-            </select>
-            <div id="distributionChart" class="h-96" style="width: 600px; height: 400px; margin: 0 auto;"></div>
+        <div class="container">
+            <div class="flex justify-center items-center h-full p-4">
+                <select style="margin: 0 auto" id="distributionYearSelector" class="m-auto" onchange="updateDistributionChart()">
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+            <div class="flex">
+                <div id="distributionChart" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+            </div>
         </div>
         <br>
         <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de las bases de datos de ANID 
@@ -43,14 +48,18 @@
     <div class="container-fluid">
         <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del Monto Total de Financiamiento Fondef ($), según sexo y año (2020-2023).</p>
         <br>
-        <div class="grafico-container">
-            <select style="margin: 0 auto" id="financingYearSelector" onchange="updateFinancingChart()">
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-            </select>
-            <div id="financingChart" class="h-96" style="width: 600px; height: 400px; margin: 0 auto;"></div>
+        <div class="container">
+            <div class="flex justify-center items-center h-full p-4">
+                <select style="margin: 0 auto" id="financingYearSelector" onchange="updateFinancingChart()">
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+            <div class="flex">
+                <div id="financingChart" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+            </div>
         </div>
         <br>
         <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos ANID Proyectos 
@@ -119,8 +128,11 @@
         yAxis: {
             type: 'value',
             name: '%',
+            nameLocation: 'middle',
+            nameGap: 35,
             nameTextStyle: {
-                fontSize: 18  // Tamaño de la fuente del título del eje Y
+                fontSize: 18,
+                align: 'left'  // Tamaño de la fuente del título del eje Y
             }
         },
         series: [
@@ -173,9 +185,12 @@
         },
         yAxis: {
             type: 'value',
-            name: '$ M',
+            name: '$ MM',
+            nameLocation: 'middle',
+            nameGap: 35,
             nameTextStyle: {
-                fontSize: 18  // Tamaño de la fuente del título del eje Y
+                fontSize: 18,
+                align: 'left'  // Tamaño de la fuente del título del eje Y
             }
         },
         series: [
@@ -189,7 +204,7 @@
                 label: {
                     show: true,
                     position: 'inside',
-                    formatter: '${c} M',  // Formato para mostrar el valor
+                    formatter: '${c} MM',  // Formato para mostrar el valor
                 }
             },
             {
@@ -202,7 +217,7 @@
                 label: {
                     show: true,
                     position: 'inside',
-                    formatter: '${c} M',  // Formato para mostrar el valor
+                    formatter: '${c} MM',  // Formato para mostrar el valor
                 }
             },
             {
@@ -212,7 +227,7 @@
                 label: {
                     show: true,
                     position: 'inside',
-                    formatter: '${c} M',  // Formato para mostrar el valor
+                    formatter: '${c} MM',  // Formato para mostrar el valor
                 }
             }
         ]
@@ -343,6 +358,12 @@
     document.getElementById("financingYearSelector").value = años_ff[0];
     updateDistributionChart();
     updateFinancingChart();
+
+    // Resize charts when window is resized
+    window.addEventListener('resize', function () {
+        distributionChart.resize();
+        financingChart.resize();
+    });
 </script>
 
 {% include 'nav_lineas.html' %}

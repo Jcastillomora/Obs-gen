@@ -3,18 +3,19 @@
 {% block content %}
 {% include 'banner_lineas.html' %}
 {% include 'navbar.html' %}
-<div class="container-lg dark:bg-indigo-950" style="font-family: 'Roboto', sans-serif; color: #4d4d4d">
+<div class="container-lg text-2xl lg:text-3xl" style="font-family: 'Roboto', sans-serif; color: #4d4d4d">
     <br>
     <br>
-    <hr style="border-top: 1px solid #000; width: 50%">
+    <hr style="border-top: 1px solid; width: 50%;">
     <br>
-    <p class="animate-pulse mb-4 text-3xl md:text-5xl lg:text-6xl font-bold text-blue-500 dark:text-white">Línea<br>de Acción 4</p>
+    <p class="animate-pulse mb-4 text-3xl md:text-5xl lg:text-6xl font-bold" style="color: #005fab;">Línea<br>de Acción 4</p>
     <br>
-    <hr style="border-top: 1px solid #000; width: 50%">
+    <hr style="border-top: 1px solid; width: 50%;">
     <br>
-    <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white">Capital Humano<br></p>
     <br>
-    <p class="text-lg font-normal text-zinc-950 lg:text-xl min-[320px]:text-sms dark:text-white">
+    <p class="animate-fade-right text-lg font-bold text-zinc-950 lg:text-xl dark:text-white">Capital Humano<br></p>
+    <br>
+    <p class="animate-fade-right text-lg font-normal text-zinc-950 lg:text-xl min-[320px]:text-sm w-9/12">
         Los indicadores correspondientes a este ítem, guardan relación con la Jornada Completa 
         Equivalente (JCE), la diferencia en el salario promedio anual entre hombres y mujeres 
         y datos provenientes de la Dirección Académica de Postgrado (DAP).
@@ -25,11 +26,10 @@
     <div class="container-fluid">
         <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Porcentaje de Académicas/os acreditados en el año 2023, según total programas de Postgrado</p>
         <br>
-        {% comment %} {{ chart|safe }} {% endcomment %}
-        <div class="grafico-container">
-            <div id="grafico-barras" class="h-96" style="width: 600px; height: 600px; margin: 0 auto;"></div>
+        <div class="flex">
+            <div id="grafico-barras" class="h-96" style="width: 800px; height: 600px; margin: 0 auto;"></div>
         </div>
-        <p style="text-align: center" class="text-xs font-thin text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera</p>
+        <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera</p>
     </div>
     <br>
     <hr style="border-top: 1px solid #000;">
@@ -39,31 +39,29 @@
         <br>
         <br>
         <div class="row">
-            {% comment %} {{ chart2|safe }} {% endcomment %}
-            <div class="col p-3">
-                <div id="chart-colaborador" class="chart" style="width: 400px; height: 400px;"></div>
+            <div class="flex col p-3">
+                <div id="chart-colaborador" style="width: 400px; height: 400px;"></div>
             </div>
-            <div class="col p-3">
-                <div id="chart-claustro" class="chart" style="width: 400px; height: 400px;"></div>
+            <div class="flex col p-3">
+                <div id="chart-claustro" style="width: 400px; height: 400px;"></div>
             </div>
-            <div class="col p-3">
-                <div id="chart-nucleo" class="chart" style="width: 400px; height: 400px;"></div>
+            <div class="flex col p-3">
+                <div id="chart-nucleo" style="width: 400px; height: 400px;"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col p-3">
-                <div id="chart-permanente" class="chart" style="width: 400px; height: 400px;"></div>
+            <div class="flex col p-3">
+                <div id="chart-permanente" style="width: 400px; height: 400px;"></div>
             </div>
-            <div class="col p-3">
-                <div id="chart-visitante" class="chart" style="width: 400px; height: 400px;"></div>
+            <div class="flex col p-3">
+                <div id="chart-visitante" style="width: 400px; height: 400px;"></div>
             </div>
         </div>
-        <p class="text-xs text-center font-thin text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera.</p> 
+        <p class="text-xs text-center font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera.</p> 
     </div>
     <br>
     <br>
 </div>
-
 
 <script type="text/javascript">
     // Inicializar el gráfico de Barras Apiladas con ECharts
@@ -92,7 +90,7 @@
         },
         legend: {
             data: ['Mujeres', 'Hombres'],
-            top: '5%'
+            top: '5%',
         },
         grid: {
             left: '3%',
@@ -105,7 +103,7 @@
             data: programasBar,
             axisLabel: {
                 interval: 0, // Mostrar todas las etiquetas
-                rotate: 45, // Rotar las etiquetas para que no se superpongan
+                rotate: 0, // Rotar las etiquetas para que no se superpongan
                 formatter: function(value) {
                     return value.split(' ').join('\n'); // Ajuste opcional para etiquetas largas
                 }
@@ -113,6 +111,13 @@
         },
         yAxis: {
             type: 'value',
+            name: '%',
+              nameLocation: 'middle',
+              nameGap: 35,
+              nameTextStyle: {
+                fontSize: 18,
+                align: 'left'  // Tamaño de la fuente del título del eje Y
+            }
         },
         series: [
             {

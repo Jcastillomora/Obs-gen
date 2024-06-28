@@ -15,11 +15,9 @@
     <!-- Plotly CDN JS -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-    {% comment %} <!--Ubuntu Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet"> {% endcomment %}
-
+    <!--Gandhi Font Footer Institucional-->
+    <link href="https://fonts.cdnfonts.com/css/gandhi-sans" rel="stylesheet">
+                
     <!--Echarts-->
     <script src=" https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js "></script>
 
@@ -30,26 +28,13 @@
 
     <link rel="stylesheet" href="{% static 'css/style_base.css' %}">
 
-    <style>
-        .chart-container {
-            width: 600px;
-            height: 400px;
-        }
-
-        @media (max-width: 480px) {
-            .chart-container {
-                width: 200px;
-                height: 300px;
-            }
-        }
-    </style>
     <title>Observatorio Género y Ciencia</title>
     
 {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
 {% bootstrap_messages %}{% tailwind_css %}
 
 </head>
-<body class="bg-white dark:bg-indigo-950" style="font-family: Roboto, sans-serif;">
+<body class="bg-white" style="font-family: Roboto, sans-serif;">
 <!-- Huincha UFRO-VRIP -->
 <div class="w-full z-40 h-20" style="background-color: #005fab;">
     <div class="flex items-center justify-between p-2 h-full">
@@ -68,6 +53,7 @@
 {% block content %}
 {% endblock %}
 {% include "footer.html" %}
+{% include "footer_inst.html" %}
 <script>
     var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
