@@ -1,13 +1,3 @@
-nav li {
-    display: inline-block; /* Muestra los elementos de la lista como bloques en línea */
-    margin: 0 10px; /* Agrega espacio entre elementos de la lista */
-}
-
-
-em {
-    color: inherit; /* O cualquier otro color deseado */
-}
-
 
 .accordion-item .accordion-button:focus {
     outline: none; /* Elimina el contorno de enfoque */
