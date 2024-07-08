@@ -135,6 +135,10 @@
                 align: 'left'  // Tamaño de la fuente del título del eje Y
             }
         },
+        animationEasing: 'elasticOut',
+        animationDuration: 2000,
+        animationDurationUpdate: 1500,
+        animationEasingUpdate: 'cubicOut',
         series: [
             {
                 name: 'Mujeres',
@@ -148,7 +152,11 @@
                     show: true,
                     position: 'inside',
                     formatter: '{c}%',  // Formato para mostrar el valor
+                },
+                animationDelay: function (idx) {
+                    return idx * 100; // Retraso de animación por barra
                 }
+                
             },
             {
                 name: 'Hombres',
@@ -162,6 +170,9 @@
                     show: true,
                     position: 'inside',
                     formatter: '{c}%',  // Formato para mostrar el valor
+                },
+                animationDelay: function (idx) {
+                    return idx * 100 + 200; // Retraso de animación por barra
                 }
             }
         ]
@@ -205,6 +216,9 @@
                     show: true,
                     position: 'inside',
                     formatter: '${c} MM',  // Formato para mostrar el valor
+                },
+                animationDelay: function (idx) {
+                    return idx * 100; // Retraso de animación por barra
                 }
             },
             {
@@ -218,6 +232,9 @@
                     show: true,
                     position: 'inside',
                     formatter: '${c} MM',  // Formato para mostrar el valor
+                },
+                animationDelay: function (idx) {
+                    return idx * 100 + 200; // Retraso de animación por barra
                 }
             },
             {
@@ -228,9 +245,16 @@
                     show: true,
                     position: 'inside',
                     formatter: '${c} MM',  // Formato para mostrar el valor
+                },
+                animationDelay: function (idx) {
+                    return idx * 100 + 400; // Retraso de animación por barra
                 }
             }
-        ]
+        ],
+        animationEasing: 'elasticOut',
+        animationDuration: 2000,
+        animationDurationUpdate: 1500,
+        animationEasingUpdate: 'cubicOut'
     };
 
     // Asignar opciones a los gráficos
