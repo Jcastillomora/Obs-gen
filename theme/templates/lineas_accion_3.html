@@ -39,7 +39,7 @@
             </div>
         </div>
         <br>
-        <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de las bases de datos de ANID 
+        <p style="text-align: center; color: #4d4d4d" class="text-xl font-normal"><strong>Fuente:</strong> Elaboración propia, a partir de las bases de datos de ANID 
             Proyectos (bdh_proyectos_2003_2022 y bdh_proyectos_2003_2023)</p>
     </div>
     <br>
@@ -62,7 +62,7 @@
             </div>
         </div>
         <br>
-        <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos ANID Proyectos 
+        <p style="text-align: center; color: #4d4d4d" class="text-xl font-normal"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos ANID Proyectos 
             (bdh_proyectos_2003_2022 y bdh_proyectos_2023_2032).</p>
     </div>
 </div>
@@ -127,13 +127,6 @@
         },
         yAxis: {
             type: 'value',
-            name: '%',
-            nameLocation: 'middle',
-            nameGap: 35,
-            nameTextStyle: {
-                fontSize: 18,
-                align: 'left'  // Tamaño de la fuente del título del eje Y
-            }
         },
         animationEasing: 'elasticOut',
         animationDuration: 2000,
@@ -146,12 +139,14 @@
                 stack: 'total',
                 data: [],
                 itemStyle: {
-                    color: '#a280f6'   // Color para las barras de mujeres
+                    color: '#6cab52'   // Color para las barras de mujeres
                 },
                 label: {
                     show: true,
                     position: 'inside',
-                    formatter: '{c}%',  // Formato para mostrar el valor
+                    formatter: function(params) {
+                        return params.data !== 0 ? params.data + '%' : '';
+                    }  // Formato para mostrar el valor
                 },
                 animationDelay: function (idx) {
                     return idx * 100; // Retraso de animación por barra
@@ -164,12 +159,14 @@
                 stack: 'total',
                 data: [],
                 itemStyle: {
-                    color: '#ea7742'  // Color para las barras de hombres
+                    color: '#201549'  // Color para las barras de hombres
                 },
                 label: {
                     show: true,
                     position: 'inside',
-                    formatter: '{c}%',  // Formato para mostrar el valor
+                    formatter: function(params) {
+                        return params.data !== 0 ? params.data + '%' : '';
+                    }  // Formato para mostrar el valor
                 },
                 animationDelay: function (idx) {
                     return idx * 100 + 200; // Retraso de animación por barra
@@ -181,7 +178,7 @@
     // Opciones para gráfico de Financiamiento
     var financingOption = {
        legend: {
-            data: ['Mujeres', 'Hombres', 'Total']
+            data: ['Mujeres', 'Hombres']
         },
         xAxis: {
             type: 'category',
@@ -196,21 +193,14 @@
         },
         yAxis: {
             type: 'value',
-            name: '$ MM',
-            nameLocation: 'middle',
-            nameGap: 35,
-            nameTextStyle: {
-                fontSize: 18,
-                align: 'left'  // Tamaño de la fuente del título del eje Y
-            }
         },
         series: [
             {
                 name: 'Mujeres',
                 type: 'bar',
-                data: ['Mujeres', 'Hombres', 'Total'],
+                data: ['Mujeres', 'Hombres'],
                 itemStyle: {
-                    color: '#a280f6'   // Color para las barras de mujeres
+                    color: '#9d82ef'   // Color para las barras de mujeres
                 },
                 label: {
                     show: true,
@@ -226,7 +216,7 @@
                 type: 'bar',
                 data: [],
                 itemStyle: {
-                    color: '#ea7742'  // Color para las barras de hombres
+                    color: '#201549'  // Color para las barras de hombres
                   },
                 label: {
                     show: true,
@@ -235,19 +225,6 @@
                 },
                 animationDelay: function (idx) {
                     return idx * 100 + 200; // Retraso de animación por barra
-                }
-            },
-            {
-                name: 'Total',
-                type: 'bar',
-                data: [],
-                label: {
-                    show: true,
-                    position: 'inside',
-                    formatter: '${c} MM',  // Formato para mostrar el valor
-                },
-                animationDelay: function (idx) {
-                    return idx * 100 + 400; // Retraso de animación por barra
                 }
             }
         ],

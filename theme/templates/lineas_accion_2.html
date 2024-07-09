@@ -26,7 +26,8 @@
       <hr style="border-top: 1px solid #000"> 
       <br>
       <div class="container-fluid">
-        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución en el área de investigación de publicaciones 2022-2023</p>
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del porcentaje en el liderazgo de publicaciones, según sexo y año 
+          (2022-2023)</p>
         <br>
         <div class="container">
             <select style="margin: 0 auto" id="yearSelector" onchange="updateLiderazgoFemeninoChart()">
@@ -37,7 +38,7 @@
               <div id="liderazgoFemeninoChart" style="width: 800px; height: 600px; margin: 0 auto;"></div>
             </div>
         </div>
-        <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de las bases de datos de Productividad Científica 
+        <p style="text-align: center; color: #4d4d4d" class="text-xl font-normal" ><strong>Fuente:</strong> Elaboración propia, a partir de las bases de datos de Productividad Científica 
           de la Universidad de La Frontera 2022-2023.</p>
       </div>
       <br>
@@ -45,12 +46,13 @@
       <hr>
       <br>
       <div class="container-fluid">
-        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución de Liderazgo en Publicaciones Científicas (2020-2023)</p>
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del porcentaje en el liderazgo de publicaciones, según sexo y año 
+          (2020-2023)</p>
         <br>
         <div class="flex">
             <div id="main" style="width: 800px; height: 600px; margin: 0 auto;"></div>
         </div>
-        <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de las bases de datos de Productividad Científica 
+        <p style="text-align: center; color: #4d4d4d" class="text-xl font-normal text-zinc-950"><strong>Fuente:</strong> Elaboración propia, a partir de las bases de datos de Productividad Científica 
           de la Universidad de La Frontera 2020-2023.</p>
       </div>
       <br>
@@ -59,13 +61,13 @@
       <br>
     
       <div class="container-fluid">
-        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución Proyectos de Innovación y Transferencia Tecnológica (2020-2023)</p>
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del porcentaje en Proyectos de Innovación y Transferencia Tecnológica, según sexo y año 
+          (2020-2023)</p>
         <br>
         <div class="flex">
             <div id="lineChart" style="width: 800px; height: 600px; margin: 0 auto;"></div>
         </div>
-        <p style="text-align: center" class="text-xs font-normal text-zinc-950 lg:text-xl dark:text-white">Fuente: Elaboración propia, a partir de la base de datos Unidad de
-          Transferencia Tecnológica de la Universidad de La Frontera 2020-2023.</p>
+        <p style="text-align: center; color: #4d4d4d" class="text-xl font-normal text-zinc-950"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos Coordinación de Gestión y Administración de Proyectos de Innovación 2020- 2023 de la Universidad de La Frontera.</p>
       </div>
       <br>
       <br>
@@ -130,13 +132,6 @@
           },
           yAxis: {
               type: 'value',
-              name: '%',
-              nameLocation: 'middle',
-              nameGap: 35,
-              nameTextStyle: {
-                fontSize: 18,
-                align: 'left'  // Tamaño de la fuente del título del eje Y
-              }
           },
           series: [
               {
@@ -145,7 +140,7 @@
                   stack: 'total',
                   data: total_mujeres,
                   itemStyle: {
-                    color: '#a280f6'   // Color para las barras de mujeres
+                    color: '#9d82ef'   // Color para las barras de mujeres
                   },
                   label: {
                     show: true,
@@ -159,7 +154,7 @@
                   stack: 'total',
                   data: total_hombres,
                   itemStyle: {
-                    color: '#ea7742'  // Color para las barras de hombres
+                    color: '#201549'  // Color para las barras de hombres
                   },
                   label: {
                     show: true,
@@ -206,13 +201,6 @@
           },
           yAxis: {
               type: 'value',
-              name: '%',
-              nameLocation: 'middle',
-              nameGap: 35,
-              nameTextStyle: {
-                fontSize: 18,
-                align: 'left'  // Tamaño de la fuente del título del eje Y
-              }
           },
           series: [
               {
@@ -220,7 +208,7 @@
                   type: 'line',
                   data: total_itt_mujeres,
                   itemStyle: {
-                    color: '#a280f6'   // Color para las barras de mujeres
+                    color: '#6cab52'   // Color para las barras de mujeres
                   },
                   label: {
                     show: false,
@@ -233,7 +221,7 @@
                   type: 'line',
                   data: total_itt_hombres,
                   itemStyle: {
-                    color: '#ea7742'  // Color para las barras de hombres
+                    color: '#201549'  // Color para las barras de hombres
                   },
                   label: {
                     show: false,
@@ -288,13 +276,6 @@
               },
               yAxis: {
                   type: 'value',
-                  name: '%',
-                  nameLocation: 'middle',
-                  nameGap: 35,
-                  nameTextStyle: {
-                  fontSize: 18,
-                  align: 'left'  // Tamaño de la fuente del título del eje Y
-                  }
               },
               series: [
                   {
@@ -303,7 +284,7 @@
                       stack: 'total',
                       data: total_mujeres,
                       itemStyle: {
-                        color: '#a280f6'   // Color para las barras de mujeres
+                        color: '#f7912d'   // Color para las barras de mujeres
                       },
                       label: {
                         show: true,
@@ -317,7 +298,7 @@
                       stack: 'total',
                       data: total_hombres,
                       itemStyle: {
-                        color: '#ea7742'  // Color para las barras de hombres
+                        color: '#201549'  // Color para las barras de hombres
                       },
                       label: {
                         show: true,
