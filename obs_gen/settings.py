@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'django.contrib.humanize',
     'bootstrap5',
     'tailwind',
     'theme',
@@ -109,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 #Idioma español latinoamericano chile
-LANGUAGE_CODE = 'es' 
+LANGUAGE_CODE = 'es-CL' 
 
 TIME_ZONE = 'America/Santiago'
 
@@ -143,6 +144,7 @@ NPM_BIN_PATH = 'npm.cmd'
 TAILWIND_CSS_PATH = 'css/dist/styles.css'
 
 TAILWIND_DEV_SERVER = False
+
 
 # Ciberseguridad
 # SECURE_BROWSER_XSS_FILTER = True

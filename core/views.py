@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from core.models import LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT, FONDEF_categorias, FONDEF_financiamiento, Academicosdap_acreditados, Academicosdap_tipos
-from django.db.models import Sum
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 def home(request):
     return render(request, 'home.html')
@@ -13,32 +13,6 @@ def lineas_accion(request):
 
 def la1(request):
     return render(request, 'lineas_accion_1.html')
-
-def preparar_datos_anidados(tdap, campo):
-    outer_data = {}
-    inner_data = []
-
-    for entry in tdap:
-        tipo = entry.tipo_programa
-        sexo = entry.sexo
-        valor = getattr(entry, campo)
-
-        # Solo agregar datos que no sean 0
-        if valor != 0:
-            # Preparar los datos exteriores
-            if tipo not in outer_data:
-                outer_data[tipo] = 0
-            outer_data[tipo] += valor
-
-            # Preparar los datos interiores
-            inner_data.append({
-                'name': f'{tipo} ({sexo})',
-                'value': valor
-            })
-
-    outer_series = [{'name': key, 'value': value} for key, value in outer_data.items()]
-
-    return outer_series, inner_data
 
 def graficos_l2(request):
 
@@ -153,15 +127,25 @@ def graficos_l3(request):
 
     return render(request, 'lineas_accion_3.html', context)
 
+def obtener_datos_programa():
+    tdap = Academicosdap_tipos.objects.all()
+    data = []
+    for programa in tdap:
+        data.append({
+            'tipo_programa': programa.tipo_programa,
+            'sexo': programa.sexo,
+            'colaborador': programa.colaborador,
+            'claustro': programa.claustro,
+            'nucleo': programa.nucleo,
+            'permanente': programa.permanente,
+            'visitante': programa.visitante,
+        })
+    return data
+
 def graficos_l4(request):
 
-    tdap = Academicosdap_tipos.objects.all()
-
-    data_colaborador, inner_colaborador = preparar_datos_anidados(tdap, 'colaborador')
-    data_claustro, inner_claustro = preparar_datos_anidados(tdap, 'claustro')
-    data_nucleo, inner_nucleo = preparar_datos_anidados(tdap, 'nucleo')
-    data_permanente, inner_permanente = preparar_datos_anidados(tdap, 'permanente')
-    data_visitante, inner_visitante = preparar_datos_anidados(tdap, 'visitante')
+    # tdap = Academicosdap_tipos.objects.all()
+    datos_programas = obtener_datos_programa()
 
     adap = Academicosdap_acreditados.objects.all()
 
@@ -175,19 +159,10 @@ def graficos_l4(request):
         datos_hombres.append(registro.total_hombres)
 
     contexto = {
-        'data_colaborador': data_colaborador,
-        'inner_colaborador': inner_colaborador,
-        'data_claustro': data_claustro,
-        'inner_claustro': inner_claustro,
-        'data_nucleo': data_nucleo,
-        'inner_nucleo': inner_nucleo,
-        'data_permanente': data_permanente,
-        'inner_permanente': inner_permanente,
-        'data_visitante': data_visitante,
-        'inner_visitante': inner_visitante,
         'programas': programas,
         'datos_mujeres': datos_mujeres,
         'datos_hombres': datos_hombres,
+        'datos_programas': datos_programas,
         
     }
     return render(request, 'lineas_accion_4.html', contexto)

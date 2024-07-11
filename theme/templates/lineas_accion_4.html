@@ -3,12 +3,12 @@
 {% block content %}
 {% include 'banner_lineas.html' %}
 {% include 'navbar.html' %}
-<div class="container-lg text-2xl lg:text-3xl" style="font-family: 'Roboto', sans-serif; color: #4d4d4d">
+<div class="container-lg" style="font-family: 'Roboto', sans-serif; color: #4d4d4d">
     <br>
     <br>
     <hr style="border-top: 1px solid; width: 50%;">
     <br>
-    <p class="mb-4 text-3xl md:text-5xl lg:text-6xl font-bold" style="color: #005fab;">Línea<br>de Acción 4</p>
+    <p class="mb-4 text-3xl font-light" style="color: #005fab;">Línea<br>de Acción 4</p>
     <br>
     <hr style="border-top: 1px solid; width: 50%;">
     <br>
@@ -16,274 +16,326 @@
     <p class="animate-fade-right text-lg font-bold text-zinc-950 lg:text-xl dark:text-white">Capital Humano<br></p>
     <br>
     <p class="animate-fade-right text-lg font-normal text-zinc-950 lg:text-xl min-[320px]:text-sm w-9/12">
-        Los indicadores correspondientes a este ítem, guardan relación con la Jornada Completa 
-        Equivalente (JCE), la diferencia en el salario promedio anual entre hombres y mujeres 
-        y datos provenientes de la Dirección Académica de Postgrado (DAP).
+        El Capital Humano refiere al salario promedio anual del personal académico con  Jornada Completa Equivalente 
+        (JCE) en planta regular que realizan I+D y a los tipos de académicos/as acreditados para los programas de 
+        postgrado que brinda la Universidad.
     </p>
     <br>
     <hr style="border-top: 1px solid #000"> 
     <br>
     <div class="container-fluid">
-        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Porcentaje de Académicas/os acreditados en el año 2023, según total programas de Postgrado</p>
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl" style="text-align: center">Porcentaje de académicos/as acreditados en el año 2023, según total Programas de Postgrado</p>
         <br>
         <div class="flex">
             <div id="grafico-barras" class="h-96" style="width: 800px; height: 600px; margin: 0 auto;"></div>
         </div>
-        <p class="text-xl text-center font-normal" style:"color: #4d4d4d"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera</p>
+        <p class="text-xl text-center font-normal" style:"color: #4d4d4d"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera. </p>
     </div>
     <br>
     <hr style="border-top: 1px solid #000;">
     <br>
     <div class="container-fluid">
-        <p class="text-lg font-bold text-center text-zinc-950 lg:text-xl dark:text-white">Porcentaje de tipos de académicos acreditados 2023, según total programas de postgrado y sexo</p>
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl" style="text-align: center">Porcentaje de académicos/as colaboradores acreditados en el año 2023, según total de Programas de Postgrado</p>
         <br>
-        <br>
-        <div class="row">
-            <div class="flex col p-3">
-                <div id="chart-colaborador" style="width: 500px; height: 500px;"></div>
-            </div>
-            <div class="flex col p-3">
-                <div id="chart-claustro" style="width: 500px; height: 500px;"></div>
-            </div>
+        <div class="flex">
+            <div id="grafico-colaborador" class="h-96" style="width: 800px; height: 600px; margin: 0 auto;"></div>
         </div>
-        <br>
-        <div class="row">
-
-            <div class="flex col p-3">
-                <div id="chart-nucleo" style="width: 500px; height: 500px;"></div>
-            </div>
-            <div class="flex col p-3">
-                <div id="chart-permanente" style="width: 500px; height: 500px;"></div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="flex col p-3">
-                <div id="chart-visitante" style="width: 500px; height: 500px;"></div>
-            </div>
-        </div>
-        <p class="text-xl text-center font-normal" style:"color: #4d4d4d"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera.</p> 
+        <p class="text-xl text-center font-normal" style:"color: #4d4d4d"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera. </p>
     </div>
     <br>
+    <hr style="border-top: 1px solid #000;">
+    <br>
+    <div class="container-fluid">
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl" style="text-align: center">Porcentaje de académicos/as claustro acreditados en el año 2023, según total de Programas de Postgrado</p>
+        <br>
+        <div class="flex">
+            <div id="grafico-claustro" class="h-96" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+        </div>
+        <p class="text-xl text-center font-normal" style:"color: #4d4d4d"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera. </p>
+    </div>
+    <br>
+    <hr style="border-top: 1px solid #000;">
+    <br>
+    <div class="container-fluid">
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl" style="text-align: center">Porcentaje de académicos/as núcleo acreditados en el año 2023, según total de Programas de Postgrado</p>
+        <br>
+        <div class="flex">
+            <div id="grafico-nucleo" class="h-96" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+        </div>
+        <p class="text-xl text-center font-normal" style:"color: #4d4d4d"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera. </p>
+    </div>
+    <br>
+    <hr style="border-top: 1px solid #000;">
+    <br>
+    <div class="container-fluid">
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl" style="text-align: center">Porcentaje de académicos/as permanentes acreditados en el año 2023, según total de Programas de Postgrado</p>
+        <br>
+        <div class="flex">
+            <div id="grafico-permanente" class="h-96" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+        </div>
+        <p class="text-xl text-center font-normal" style:"color: #4d4d4d"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera. </p>
+    </div>
+    <br>
+    <hr style="border-top: 1px solid #000;">
+    <br>
+    <div class="container-fluid">
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl" style="text-align: center">Porcentaje de académicos/as visitantes acreditados en el año 2023, según total de Programas de Postgrado</p>
+        <br>
+        <div class="flex">
+            <div id="grafico-visitante" class="h-96" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+        </div>
+        <p class="text-xl text-center font-normal" style:"color: #4d4d4d"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos Dirección Académica de Postgrado 2023 de la Universidad de La Frontera. </p>
+    </div>
+    <br>
+    <hr style="border-top: 1px solid #000;">
     <br>
 </div>
 
 <script type="text/javascript">
-    // Inicializar el gráfico de Barras Apiladas con ECharts
-    var chartBar = echarts.init(document.getElementById('grafico-barras'));
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtener los datos desde Django
+        var programasBar = {{ programas|safe }};
+        var datos_mujeresBar = {{ datos_mujeres|safe }};
+        var datos_hombresBar = {{ datos_hombres|safe }};
 
-    // Datos para el gráfico de Barras Apiladas (suponiendo que los datos ya están pasados desde Django)
-    var programasBar = {{ programas|safe }};
-    var datos_mujeresBar = {{ datos_mujeres|safe }};
-    var datos_hombresBar = {{ datos_hombres|safe }};
+        var chartBar = echarts.init(document.getElementById('grafico-barras'));
 
-    // Configuración del gráfico de Barras Apiladas
-    var optionBar = {
-       
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'shadow'
-            },
-            formatter: function(params) {
-                var tooltipHtml = '<div style="text-align: left;">' + params[0].axisValueLabel + '</div>';
-                params.forEach(function(item) {
-                    tooltipHtml += '<div>' + item.seriesName + ': ' + item.data + ' %</div>';
-                });
-                return tooltipHtml;
-            }
-        },
-        legend: {
-            data: ['Mujeres', 'Hombres'],
-            top: '5%',
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        xAxis: {
-            type: 'category',
-            data: programasBar,
-            axisLabel: {
-                interval: 0, // Mostrar todas las etiquetas
-                rotate: 0, // Rotar las etiquetas para que no se superpongan
-                formatter: function(value) {
-                    return value.split(' ').join('\n'); // Ajuste opcional para etiquetas largas
-                }
-            }
-        },
-        yAxis: {
-            type: 'value',
-        },
-        series: [
-            {
-                name: 'Mujeres',
-                type: 'bar',
-                stack: 'total',
-                label: {
-                    show: true,
-                    position: 'inside',
-                    formatter: '{c}%',  // Formato para mostrar el valor
-                },
-                itemStyle: {
-                    color: '#a280f6'  // Color para las barras de mujeres
-                },
-                data: datos_mujeresBar
-            },
-            {
-                name: 'Hombres',
-                type: 'bar',
-                stack: 'total',
-                label: {
-                    show: true,
-                    position: 'inside',
-                    formatter: '{c}%',  // Formato para mostrar el valor
-                },
-                itemStyle: {
-                    color: '#ea7742'  // Color para las barras de hombres
-                },
-                data: datos_hombresBar
-            }
-        ],
-        animationEasing: 'elasticOut',
-        animationDuration: 2000,
-        animationDurationUpdate: 1500,
-        animationEasingUpdate: 'cubicOut'    
-    };
-
-    // Aplicar las opciones al gráfico de Barras Apiladas
-    chartBar.setOption(optionBar);
-
-    window.addEventListener('resize', function() {
-        chartBar.resize();
-    });
-
-    // Función para inicializar gráfico de Torta con ECharts
-    function initChart(id, title, outerData, innerData) {
-        var chartDom = document.getElementById(id);
-        var myChart = echarts.init(chartDom);
-        var option = {
-            title: {
-                text: title + ' por tipo programa y sexo',
-                left: 'center',
-            },
+        var optionBar = {
             tooltip: {
-                trigger: 'item',
-                formatter: '{a} <br/>{b}: {c} ({d}%)'
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                },
+                formatter: function(params) {
+                    var tooltipHtml = '<div style="text-align: left;">' + params[0].axisValueLabel + '</div>';
+                    params.forEach(function(item) {
+                        tooltipHtml += '<div>' + item.seriesName + ': ' + item.data + ' %</div>';
+                    });
+                    return tooltipHtml;
+                }
             },
             legend: {
-                orient: 'horizontal',
-                top:'bottom',
-                left: 'center',
-                data: outerData.map(function(item) {
-                    return item.name;
-                }).concat(innerData.map(function(item) {
-                    return item.name;
-                })),
-                type: 'scroll',
-                icon: 'circle',
+                data: ['Mujeres', 'Hombres'],
+                top: '5%',
             },
             grid: {
-                top: 10, // Añade un margen superior al área del gráfico
-                bottom: 10, // Añade un margen inferior al área del gráfico
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
             },
+            xAxis: {
+                type: 'category',
+                data: programasBar,
+                axisLabel: {
+                    interval: 0,
+                    rotate: 0,
+                    formatter: function(value) {
+                        return value.split(' ').join('\n');
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value',
+            },
+            animationEasing: 'elasticOut',
+            animationDuration: 2000,
+            animationDurationUpdate: 1500,
+            animationEasingUpdate: 'cubicOut',
             series: [
                 {
-                    name: title,
-                    type: 'pie',
-                    radius: ['0%', '40%'],
-                    center: ['25%', '50%'],
+                    name: 'Mujeres',
+                    type: 'bar',
+                    stack: 'total',
+                    data: datos_mujeresBar,
+                    itemStyle: {
+                        color: '#6cab52'
+                    },
                     label: {
                         show: true,
-                        formatter: '{d}%',
+                        fontSize: 14,
                         position: 'inside',
-                        fontSize: '9',
+                        formatter: function(params) {
+                            return params.data !== 0 ? params.data + '%' : '';
+                        }  // Formato para mostrar el valor
                     },
-                    emphasis: {
-                        label: {
-                            show: true,
-                            fontSize: '12',
-                        }
-                    },
-                    labelLine: {
-                        show: true,
-                        length: 10,
-                        length2: 10,
-                        smooth: true
-                    },
-                    data: outerData
+                    animationDelay: function (idx) {
+                        return idx * 100; // Retraso de animación por barra
+                    }
                 },
                 {
-                    name: title + ' por Sexo',
-                    type: 'pie',
-                    radius: ['0%', '40%'],
-                    center: ['75%', '50%'],
+                    name: 'Hombres',
+                    type: 'bar',
+                    stack: 'total',
+                    data: datos_hombresBar,
+                    itemStyle: {
+                        color: '#201549'
+                    },
                     label: {
                         show: true,
-                        formatter: '{d}%',
+                        fontSize: 14,
                         position: 'inside',
+                        formatter: function(params) {
+                            return params.data !== 0 ? params.data + '%' : '';
+                        }  // Formato para mostrar el valor
                     },
-                    data: innerData
+                    animationDelay: function (idx) {
+                        return idx * 100; // Retraso de animación por barra
+                    }
                 }
-            
-            
-            ]
+            ],
+            animationEasing: 'elasticOut',
+            animationDuration: 2000,
+            animationDurationUpdate: 1500,
+            animationEasingUpdate: 'cubicOut'
         };
 
-        myChart.setOption(option);
-
-        // Animación con setInterval
-        setInterval(() => {
-            var rotation = myChart.getOption().series[0].startAngle || 0;
-            myChart.setOption({
-                series: [{
-                    startAngle: rotation + 10
-                }]
-            });
-        }, 2000);
-
-
-        var colorMujeres = '#a280f6';
-        var colorHombres = '#ea7742';
-            
-            option.series.forEach(function (series) {
-                series.data.forEach(function (item) {
-                    if (item.name.includes('mujeres')) {
-                        item.itemStyle = { color: colorMujeres };
-                    } else if (item.name.includes('hombres')) {
-                        item.itemStyle = { color: colorHombres };
-                    }
-                });
-            });        
-
-
-        myChart.setOption(option);
+        chartBar.setOption(optionBar);
 
         window.addEventListener('resize', function() {
-            myChart.resize();
+            chartBar.resize();
         });
-    }
+    });
+</script>
 
-    // Datos para los gráficos de Torta (suponiendo que los datos ya están pasados desde Django)
-    var dataColaborador = {{ data_colaborador|safe }};
-    var innerColaborador = {{ inner_colaborador|safe }};
-    var dataClaustro = {{ data_claustro|safe }};
-    var innerClaustro = {{ inner_claustro|safe }};
-    var dataNucleo = {{ data_nucleo|safe }};
-    var innerNucleo = {{ inner_nucleo|safe }};
-    var dataPermanente = {{ data_permanente|safe }};
-    var innerPermanente = {{ inner_permanente|safe }};
-    var dataVisitante = {{ data_visitante|safe }};
-    var innerVisitante = {{ inner_visitante|safe }};
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtener los datos desde Django
+        var dataProgramas = {{ datos_programas|safe }};
 
-    // Inicializar los gráficos de Torta
-    initChart('chart-colaborador', 'Colaboradores', dataColaborador, innerColaborador);
-    initChart('chart-claustro', 'Claustro', dataClaustro, innerClaustro);
-    initChart('chart-nucleo', 'Núcleo', dataNucleo, innerNucleo);
-    initChart('chart-permanente', 'Permanente', dataPermanente, innerPermanente);
-    initChart('chart-visitante', 'Visitante', dataVisitante, innerVisitante);
+        // Función para procesar datos
+        function processData(variable) {
+            var tipos_programa = [];
+            var hombres = [];
+            var mujeres = [];
+
+            dataProgramas.forEach(function(item) {
+                if (!tipos_programa.includes(item.tipo_programa)) {
+                    tipos_programa.push(item.tipo_programa);
+                }
+                if (item.sexo === 'hombres') {
+                    hombres.push(item[variable]);
+                } else {
+                    mujeres.push(item[variable]);
+                }
+            });
+
+            return {
+                tipos_programa: tipos_programa,
+                hombres: hombres,
+                mujeres: mujeres
+            };
+        }
+
+        // Función para crear gráficos
+        function createChart(containerId, variableName) {
+            var container = echarts.init(document.getElementById(containerId));
+            var data = processData(variableName);
+
+            var option = {
+                title: {
+                    text: {colaborador: 'Colaboradores', claustro: 'Claustro', nucleo: 'Núcleo', permanente: 'Permanente', visitante: 'Visitante'}[variableName], // Cambiar el título según el tipo de gráfico
+                    left: 'center',
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    },
+                    formatter: function(params) {
+                        var tooltipHtml = '<div style="text-align: left;">' + params[0].axisValueLabel + '</div>';
+                        params.forEach(function(item) {
+                            tooltipHtml += '<div>' + item.seriesName + ': ' + item.data + ' %</div>';
+                        });
+                        return tooltipHtml;
+                    }
+
+                },
+                legend: {
+                    data: ['Hombres', 'Mujeres'],
+                    top: '5%',
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    data: data.tipos_programa,
+                    axisLabel: {
+                        interval: 0,
+                        rotate: 0,
+                        formatter: function(value) {
+                            return value.split(' ').join('\n');
+                        }
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                },
+                animationEasing: 'elasticOut',
+                animationDuration: 2000,
+                animationDurationUpdate: 1500,
+                animationEasingUpdate: 'cubicOut',
+                series: [
+                    {
+                        name: 'Hombres',
+                        type: 'bar',
+                        stack: 'total',
+                        data: data.hombres,
+                        label: {
+                            show: true,
+                            fontSize: 14,
+                            position: 'inside',
+                            formatter: function(params) {
+                                return params.data !== 0 ? params.data + '%' : '';
+                            } 
+                        },
+                        itemStyle: {
+                            color: '#201549'
+                        },
+                        animationDelay: function (idx) {
+                            return idx * 100; // Retraso de animación por barra
+                        }
+                    },
+                    {
+                        name: 'Mujeres',
+                        type: 'bar',
+                        stack: 'total',
+                        data: data.mujeres,
+                        label: {
+                            show: true,
+                            fontSize: 14,
+                            position: 'inside',
+                            formatter: function(params) {
+                                return params.data !== 0 ? params.data + '%' : '';
+                            } 
+                        },
+                        itemStyle: {
+                            color: '#6cab52'
+                        },
+                        animationDelay: function (idx) {
+                            return idx * 100; // Retraso de animación por barra
+                        }
+                    }
+                ]
+            };
+
+            container.setOption(option);
+            window.addEventListener('resize', function() {
+                container.resize();
+            });
+        }
+
+        // Crear gráficos
+        createChart('grafico-colaborador', 'colaborador');
+        createChart('grafico-claustro', 'claustro');
+        createChart('grafico-nucleo', 'nucleo');
+        createChart('grafico-permanente', 'permanente');
+        createChart('grafico-visitante', 'visitante');
+    });
 </script>
 
 

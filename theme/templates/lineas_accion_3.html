@@ -1,31 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 {% include 'banner_lineas.html' %}
 {% include 'navbar.html' %}
-<div class="container-lg text-2xl lg:text-3xl" style="font-family: 'Roboto', sans-serif;">
+<div class="container-lg" style="font-family: 'Roboto', sans-serif;">
     <br>
     <br>
     <hr style="border-top: 1px solid; width: 50%;">
     <br>
-    <p class="mb-4 text-3xl md:text-5xl lg:text-6xl font-bold" style="color: #005fab;">Línea<br>de Acción 3</p>
+    <p class="mb-4 text-3xl font-light" style="color: #005fab;">Línea<br>de Acción 3</p>
     <br>
     <hr style="border-top: 1px solid; width: 50%;">
     <br>
     <br>
-    <p class="animate-fade-right text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: left">Financiamiento y Patrocinio I+D+i+e<br></p>
+    <p class="animate-fade-right text-lg font-bold text-zinc-950 lg:text-xl" style="text-align: left">Financiamiento y Patrocinio I+D+i+e<br></p>
     <br>
     <p class="animate-fade-right text-lg font-normal text-zinc-950 lg:text-xl min-[320px]:text-sm w-9/12">
-        Los indicadores correspondientes a este ítem, hacen referencia a los montos en el 
-        financiamiento y patrocinio adjudicados en el área de I+D+i+e.    
+        El Financiamiento y Patrocinio corresponde a los montos adjudicados para proyectos en 
+        el área de I+D+i+e. El financiamiento de proyectos hace referencia a todas las fuentes 
+        por año y el patrocinio a proyectos de carácter institucional.    
     </p>
     <br>
-    <hr style="border-top: 1px solid;" class="dark:bg-white">
+    <hr style="border-top: 1px solid;">
     <br>
     <br>
     
     <div class="container-fluid">
-        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del porcentaje en el área de investigación del monto financiamiento FONDEF, según sexo y año (2022-2023)</p>
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl" style="text-align: center">Porcentaje en el Monto Financiamiento Fondef del área de investigación, según sexo y año (2022-2023)</p>
         <br>
         <div class="container">
             <div class="flex justify-center items-center h-full p-4">
@@ -39,14 +41,13 @@
             </div>
         </div>
         <br>
-        <p style="text-align: center; color: #4d4d4d" class="text-xl font-normal"><strong>Fuente:</strong> Elaboración propia, a partir de las bases de datos de ANID 
-            Proyectos (bdh_proyectos_2003_2022 y bdh_proyectos_2003_2023)</p>
+        <p style="text-align: center; color: #4d4d4d" class="text-xl font-normal"><strong>Fuente:</strong>Elaboración propia, a partir de las bases de datos de ANID Proyectos 2022-2023.</p>
     </div>
     <br>
     <hr>
     <br>
     <div class="container-fluid">
-        <p class="text-lg font-bold text-zinc-950 lg:text-xl dark:text-white" style="text-align: center">Evolución del Monto Total de Financiamiento Fondef ($), según sexo y año (2020-2023).</p>
+        <p class="text-lg font-bold text-zinc-950 lg:text-xl" style="text-align: center">Monto Financiamiento Fondef, según sexo y año (2020-2023)</p>
         <br>
         <div class="container">
             <div class="flex justify-center items-center h-full p-4">
@@ -62,12 +63,16 @@
             </div>
         </div>
         <br>
-        <p style="text-align: center; color: #4d4d4d" class="text-xl font-normal"><strong>Fuente:</strong> Elaboración propia, a partir de la base de datos ANID Proyectos 
-            (bdh_proyectos_2003_2022 y bdh_proyectos_2023_2032).</p>
+        <p style="text-align: center; color: #4d4d4d" class="text-xl font-normal"><strong>Fuente:</strong> Elaboración propia, a partir de las bases de datos de ANID Proyectos 2020-2023.</p>
     </div>
 </div>
 <br>
 <script type="text/javascript">
+
+    {% comment %} function formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    } {% endcomment %}
+
     // Variables para Distribución
     var años = {{ años|safe }};
     var categorias_2022 = {{ categorias_2022|safe }};
@@ -143,6 +148,7 @@
                 },
                 label: {
                     show: true,
+                    fontSize: 14,
                     position: 'inside',
                     formatter: function(params) {
                         return params.data !== 0 ? params.data + '%' : '';
@@ -163,6 +169,7 @@
                 },
                 label: {
                     show: true,
+                    fontSize: 14,
                     position: 'inside',
                     formatter: function(params) {
                         return params.data !== 0 ? params.data + '%' : '';
@@ -175,8 +182,30 @@
         ]
     };
 
+    function formatNumber(value) {
+        if (value === null || value === undefined) return '-';
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
     // Opciones para gráfico de Financiamiento
     var financingOption = {
+        title: {
+            text: '$ MM (Millones clp)', // Cambiar el título según el tipo de gráfico
+            left: 'buttom',
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            },
+            formatter: function(params) {
+              var tooltipHtml = '<div style="text-align: left;">' + params[0].axisValueLabel + '</div>';
+              params.forEach(function(item) {
+                  tooltipHtml += '<div>' + item.seriesName + ': ' + formatNumber(item.data) + ' %</div>';
+              });
+              return tooltipHtml;
+            }
+        }, 
        legend: {
             data: ['Mujeres', 'Hombres']
         },
@@ -187,12 +216,17 @@
                 interval: 0, // Mostrar todas las etiquetas
                 rotate: 0, // Rotar las etiquetas para que no se superpongan
                 formatter: function(value) {
-                    return value.split(' ').join('\n'); // Ajuste opcional para etiquetas largas
+                    return formatNumber(value.split(' ').join('\n')); // Ajuste opcional para etiquetas largas
                 }
             }
         },
         yAxis: {
             type: 'value',
+            axisLabel: {
+                formatter: function(value) {
+                    return formatNumber(value);
+                }
+            }
         },
         series: [
             {
@@ -204,8 +238,9 @@
                 },
                 label: {
                     show: true,
+                    fontSize: 14,
                     position: 'inside',
-                    formatter: '${c} MM',  // Formato para mostrar el valor
+                    formatter: '$ {c}',  // Formato para mostrar el valor
                 },
                 animationDelay: function (idx) {
                     return idx * 100; // Retraso de animación por barra
@@ -220,8 +255,9 @@
                   },
                 label: {
                     show: true,
+                    fontSize: 14,
                     position: 'inside',
-                    formatter: '${c} MM',  // Formato para mostrar el valor
+                    formatter: '$ {c}',  // Formato para mostrar el valor
                 },
                 animationDelay: function (idx) {
                     return idx * 100 + 200; // Retraso de animación por barra
@@ -364,7 +400,10 @@
     window.addEventListener('resize', function () {
         distributionChart.resize();
         financingChart.resize();
-    });
+    }
+    
+    
+    );
 </script>
 
 {% include 'nav_lineas.html' %}
