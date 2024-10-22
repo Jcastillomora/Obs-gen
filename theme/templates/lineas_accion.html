@@ -3,72 +3,15 @@
 {% load static %}
 {% include 'banner_lineas.html' %}
 {% include 'navbar.html' %}  
-<div class="container-lg">  
-  <br>    
-  <br>
-  <br>
-  <br>
-  <hr style="border-top: 1px solid; width: 50%;">
-  <br>
-  <p class="mb-4 text-3xl font-light" style="color: #005fab;">Líneas <br>de Acción</p>
-  <br>
-  <hr style="border-top: 1px solid; width: 50%;">
-  <br>
-  <br>
-  <p class="animate-fade-right text-2xl text-zinc-950 w-9/12">
-    El observatorio de Género y Ciencia agrupa el total de los indicadores en Líneas
-    de Acción con el fin de monitorearlos de forma ordenada permitiendo así, una
-    correcta y eficiente sistematización, análisis y reporte de las actividades
-    a cumplir por las distintas Unidades de la Universidad de La Frontera.
-  </p>
 <br>
-<br>
-<br>
-<br>
+<div class="container-lg px-5 flex justify-center items-center">
+  <div class="w-full md:w-5/6 lg:w-3/4 xl:w-2/3">
+    <iframe title="indicadores_ines_genero_v2" src="https://app.powerbi.com/view?r=eyJrIjoiZjM2MGFmMzgtNzllMi00YjkyLWIxNjItMDIxNGZjMDZmZGExIiwidCI6ImZjZDlhYmQ4LWRmY2QtNGExYS1iNzE5LThhMTNhY2ZkNWVkOSIsImMiOjR9" frameborder="0" allowFullScreen="true" class="w-full h-[500px] min-h-[400px]"></iframe>
+  </div>
 </div>
-    <div class="container-lg px-5">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-          <!-- primera fila -->
-          <div class="col"> 
-            <div class="cardvrip block max-w-sm p-6 text-2xl font-semibold h-full flex-col justify-between" style="text-decoration: none; border: 1px solid #005fab">
-                Acciones con<br>
-                Perspectiva de género<br>
-              <br>
-              <a href="{% url 'lineas_accion_1' %}" class="bg-white font-medium text-sm px-3 py-2.5 text-center me-2 mb-2" style="text-decoration: none; border: 1px solid #005fab; color: #005fab">Ver Más</a>
-            </div>  
-          </div>
-          <div class="col">
-            <div class="cardvrip block max-w-sm p-6 text-2xl font-semibold h-full flex-col justify-between" style="text-decoration: none; border: 1px solid #005fab;">
-                Liderazgo Femenino<br>
-                I+D+i+e<br>
-              <br>
-              <a href="{% url 'lineas_accion_2' %}" class="bg-white font-medium text-sm px-3 py-2.5 text-center me-2 mb-2" style="text-decoration: none; border: 1px solid #005fab; color: #005fab">Ver Más</a>
-            </div>
-        </div>
-        <!--segunda fila-->
-        <div class="col">
-          <div class="cardvrip block max-w-sm p-6 text-2xl font-semibold h-full flex-col justify-between" style="text-decoration: none; border: 1px solid #005fab;">
-              Financiamiento<br>
-              y Patrocionio I+D+i+e<br>
-            <br>
-            <a href="{% url 'lineas_accion_3' %}" class="bg-white font-medium text-sm px-3 py-2.5 text-center me-2 mb-2" style="text-decoration: none; border: 1px solid #005fab; color: #005fab">Ver Más</a>            
-          </div>
-        </div>
-        <div class="col">
-          <div class="cardvrip block max-w-sm p-6 text-2xl font-semibold h-full flex-col justify-between" style="text-decoration: none; border: 1px solid #005fab;">
-              Capital<br>Humano<br>
-            <br>
-            <a href="{% url 'lineas_accion_4' %}" class="bg-white font-medium text-sm px-3 py-2.5 text-center me-2 mb-2" style="text-decoration: none; border: 1px solid #005fab; color: #005fab">Ver Más</a> 
-          </div>
-        </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-  </div>
-  </div>
-  </div>
+
+<br>
+
   <script>
     // Ajustar el tamaño del gráfico cuando cambia el tamaño de la ventana
     window.addEventListener('resize', function() {

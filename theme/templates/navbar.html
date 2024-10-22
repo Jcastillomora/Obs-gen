@@ -34,13 +34,16 @@
                             <a href="/" class="block pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:bg-transparent" style="text-decoration: none">Inicio</a>
                         </li>
                         <!--Dropdown-->
-                        <li class="flex">
-                                <a href="{% url 'lineas_accion' %}" style="text-decoration: none;">Líneas de Acción&nbsp;</a><button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex w-full text-center px-3 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-zinc-950 md:p-0 md:w-auto">&nbsp;&nbsp;<svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <li>
+                            <a href="{% url 'lineas_accion' %}" class="block pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:bg-transparent" style="text-decoration: none">Indicadores</a>
+                        </li>
+                        {% comment %} <li>
+                                <a href="{% url 'lineas_accion' %}" style="text-decoration: none;">Indicadores&nbsp;</a><button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex w-full text-center px-3 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-zinc-950 md:p-0 md:w-auto">&nbsp;&nbsp;<svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                               </svg>
-                            </button>
+                            </button> {% endcomment %}
                             <!-- Dropdown menu -->
-                            <div id="dropdownNavbar" class="z-10 hidden font-normal items-center divide-y divide-gray-100 shadow w-44" style="background-color: #e6e6e6;">
+                            {% comment %} <div id="dropdownNavbar" class="z-10 hidden font-normal items-center divide-y divide-gray-100 shadow w-44" style="background-color: #e6e6e6;">
                                 <ul class="text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
                                   <li>
                                     <a href="{% url 'lineas_accion_1' %}" class="no-underline block px-4 py-2" style="text-decoration: none;">Acciones con Perspectiva de Género</a>
@@ -56,13 +59,13 @@
                                   </li>
                                 </ul>
     
-                            </div>
-                        </li>
+                            </div> {% endcomment %}
+                        {% comment %} </li> {% endcomment %}
                         <li>
                             <a href="{% url 'repositorio' %}" class="block pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0" style="text-decoration: none;">Repositorio</a>
                         </li>
                         <li>
-                            <a href="https://generoenciencia.ufro.cl/nuestro-equipo/" class="block pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0" style="text-decoration: none;">Contacto</a>
+                            <a href="https://generoenciencia.ufro.cl/contacto/" class="block pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0" style="text-decoration: none;">Contacto</a>
                         </li>
                     </ul>
                 </div>
@@ -78,21 +81,7 @@
                     <a href="{% url 'home' %}">Inicio</a>
                 </li>
                 <li>
-                    <a href="{% url 'lineas_accion' %}">Lineas de Acción</a>
-                    <ul class="uk-nav-sub">
-                        <li>
-                            <a href="{% url 'lineas_accion_1' %}" target="_blank">Acciones con Perspectiva de Género</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'lineas_accion_2' %}" target="_blank">Liderazgo Femenino I+D+i+e</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'lineas_accion_3' %}" target="_blank">Financiamiento y Patrocinio I+D+i+e</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'lineas_accion_4' %}" target="_blank">Capital Humano</a>
-                        </li>
-                    </ul>
+                    <a href="{% url 'lineas_accion' %}">Indicadores</a>
                 </li>
                 <li>
                     <a href="{% url 'repositorio' %}">Repositorio</a>
