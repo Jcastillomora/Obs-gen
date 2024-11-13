@@ -20,7 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n__0(t_zigyqg=!v+^ren@=&0fyi7lqz46@h%i5jqs=2kw+*6$'
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

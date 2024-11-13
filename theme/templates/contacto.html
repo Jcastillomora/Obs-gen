@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'banner_contacto.html' %} 
+{% include 'navbar.html' %} 
+<!--form-->
+<div class="container py-5 px-20 md:px-40">
+<p class="text-xl text-gray-800 font-light justify-center">
+    Si tienes alguna consulta o sugerencia, no dudes en escribirnos.<br>
+    Completa el formulario que aparece a continuación y nuestro equipo
+    se pondrá en contacto contigo lo antes posible.
+</p>
+<br>
+<br>
+<hr class="h-px my-8 bg-gray-800 w-1/2 border-1">
+<br>
+    <form method="POST" action="{% url 'contacto' %}"  class="mx-auto px-10">
+        {% csrf_token %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+        <div>
+            <label for="nombre" class="block mb-2 text-sm font-medium text-gray-800 dark:text-white">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ingresa tu nombre" required />
+        </div>
+        <div>
+            <label for="institucion" class="block mb-2 text-sm font-medium text-gray-800 dark:text-white">Institución o Afiliación</label>
+            <input type="text" id="institucion" name="institucion" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ingresa tu institución" required />
+        </div>
+        <div>
+            <label for="ciudad" class="block mb-2 text-sm font-medium text-gray-800 dark:text-white">Ciudad/País</label>
+            <input type="text" id="ciudad" name="ciudad" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ingresa tu ciudad y país" required />
+        </div>
+        <div>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-800 dark:text-white">Email</label>
+            <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ingresa tu email" required />
+        </div>
+        </div>
+        <div class="mb-5">
+        <label for="mensaje" class="block mb-2 text-sm font-medium text-gray-800 dark:text-white">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="4" maxlength="500" class="block p-2.5 w-full text-sm text-gray-800 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        <p id="wordCount" class="text-sm text-gray-500 dark:text-gray-400">0/100 palabras</p>
+        </div>
+        <button type="submit" class="text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" style="background-color: #005FAB;">Enviar</button>
+    </form>
+  
+  <script>
+    const textarea = document.getElementById('mensaje');
+    const wordCountDisplay = document.getElementById('wordCount');
+    const maxWords = 100;
+  
+    textarea.addEventListener('input', () => {
+      const words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+      if (words.length > maxWords) {
+        textarea.value = words.slice(0, maxWords).join(" ");
+      }
+      wordCountDisplay.textContent = `${words.length}/${maxWords} palabras`;
+    });
+  </script>
+  
+<br>
+</div> 
+
+{% endblock content %}

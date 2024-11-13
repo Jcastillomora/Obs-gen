@@ -1,4 +1,11 @@
-from django.shortcuts import render
+import os
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+from django.http import HttpResponse
 from core.models import LiderazgoFemenino, LiderazgoPublicaciones, ProyectosITT, FONDEF_categorias, FONDEF_financiamiento, Academicosdap_acreditados, Academicosdap_tipos
 from django.contrib.humanize.templatetags.humanize import intcomma
 
@@ -7,6 +14,9 @@ def home(request):
     
 def repositorio(request):
     return render(request, 'repositorio.html')
+
+# def contacto(request):
+#     return render(request, 'contacto.html')
 
 def lineas_accion(request):
     return render(request, 'lineas_accion.html')
@@ -167,3 +177,51 @@ def graficos_l4(request):
     }
     return render(request, 'lineas_accion_4.html', contexto)
 
+import os
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+def contact_view(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        institucion = request.POST.get('institucion')
+        ciudad = request.POST.get('ciudad')
+        email = request.POST.get('email')
+        mensaje = request.POST.get('mensaje')
+
+        # Verifica que todos los campos estén completos
+        if not all([nombre, institucion, ciudad, email, mensaje]):
+            messages.error(request, 'Por favor, completa todos los campos.')
+            return redirect('contacto')
+
+        # Configura el mensaje de correo con SendGrid
+        message = Mail(
+            from_email='jorge.castillo@ufrontera.cl',  # Cambia este correo por el tuyo
+            to_emails='genero.ciencia@ufrontera.cl',
+            subject=f'Nuevo mensaje desde el Observatorio de Genero y Ciencia de: {nombre}',
+            plain_text_content=f"Nombre: {nombre}\nInstitución: {institucion}\nCiudad: {ciudad}\nEmail: {email}\nMensaje: {mensaje}",
+            html_content=f"""
+                <strong>Nombre:</strong> {nombre}<br>
+                <strong>Institución:</strong> {institucion}<br>
+                <strong>Ciudad/País:</strong> {ciudad}<br>
+                <strong>Email:</strong> {email}<br>
+                <strong>Mensaje:</strong><br>{mensaje}
+            """
+        )
+        message.reply_to = email
+
+        try:
+            sg = SendGridAPIClient(os.getenv('SENDGRID_API_KEY'))  # Usa la API Key de las variables de entorno
+            response = sg.send(message)
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+            messages.success(request, 'Formulario enviado exitosamente!, pronto nos pondremos en contacto contigo.')
+            # return redirect('success')
+        except Exception as e:
+            print(e)  # Registra el error en la consola
+            messages.error(request, 'Ocurrió un error al enviar el correo.')
+
+    return render(request, 'contacto.html')
